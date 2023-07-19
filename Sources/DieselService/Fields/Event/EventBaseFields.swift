@@ -1,7 +1,6 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
 import Schemata
-import PersistDB
 
 import struct Diesel.Event
 import struct Diesel.Location
