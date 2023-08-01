@@ -37,13 +37,8 @@ public extension Feature {
 	}
 
 	func matches(with corps: Corps.Identified?) -> Predicate<Identified> {
-		let predicate: Predicate<Identified> = \.value.name == name
-
-		if let corpsID = corps?.id {
-			return predicate && \.corps.id == corpsID
-		}
-
-		return predicate && !\.corps
+        \.value.name == name &&
+        \.corps.id == corps?.id
 	}
 }
 
@@ -58,17 +53,14 @@ extension Feature.Identified: Catena.Model {
 		Self.init ~ "features",
 		\.id ~ "id",
 		\.value.name ~ "name",
-		\.corps ~ "corps"
+		\.corps ~? "corps"
 	)
 
 	public var valueSet: ValueSet<Self> {
-		let valueSet: ValueSet<Self> = [
-			\.value.name == value.name
+		[
+			\.value.name == value.name,
+            \.corps.id == corps?.id
 		]
-
-		return corps.map {
-			valueSet.update(with: [\.corps.id == $0.id])
-		} ?? valueSet
 	}
 
 	public static var foreignKeys: ForeignKeys {

@@ -92,27 +92,24 @@ extension Event.Identified: Model {
 		\.value.date ~ "date",
 		\.value.timeZone ~ "time_zone",
 		\.location ~ "location",
-		\.venue ~ "venue",
+		\.venue! ~ "venue",
 		\.slots ~ \Slot.Identified.event
 	)
 
 	public var valueSet: ValueSet<Self> {
-		let valueSet: ValueSet<Self> = [
+        [
 			\.value.name == value.name,
 			\.value.date == value.date,
 			\.value.timeZone == value.timeZone,
-			\.location.id == location.id
+			\.location.id == location.id,
+            \.venue!.id == venue?.id
 		]
-
-		return venue.map {
-			valueSet.update(with: [\.venue.id == $0.id])
-		} ?? valueSet
 	}
 
 	public static var foreignKeys: ForeignKeys {
 		[
 			\.location.id: \.location,
-            \.venue.id: \.venue!
+            \.venue!.id: \.venue!
 		]
 	}
     

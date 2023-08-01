@@ -52,23 +52,20 @@ extension Performance.Identified: Catena.Model {
 		Self.init ~ "performances",
 		\.id ~ "id",
 		\.corps ~ "corps",
-        \.placement ~ "placement"
+        \.placement! ~? "placement"
 	)
 
 	public var valueSet: ValueSet<Self> {
-        let valueSet: ValueSet<Self> = [
+        [
 			\.corps.id == corps.id,
+            \.placement!.id == placement?.id
 		]
-        
-        return placement.map {
-            valueSet.update(with: [\.placement.id == $0.id])
-        } ?? valueSet
 	}
 
 	public static var foreignKeys: ForeignKeys {
 		[
 			\.corps.id: \.corps,
-            \.placement.id: \.placement!
+            \.placement!.id: \.placement!
 		]
 	}
 }

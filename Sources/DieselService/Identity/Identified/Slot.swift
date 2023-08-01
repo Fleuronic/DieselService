@@ -76,34 +76,24 @@ extension Slot.Identified: Catena.Model {
 		\.id ~ "id",
 		\.value.time ~ "time",
 		\.event ~ "event",
-		\.feature ~ "feature",
-		\.performance ~ "performance"
+		\.feature! ~? "feature",
+		\.performance! ~? "performance"
 	)
 	
 	public var valueSet: ValueSet<Self> {
-		let valueSet: ValueSet<Self> = [
+        [
 			\.value.time == value.time,
-			\.event.id == event.id
+			\.event.id == event.id,
+            \.performance!.id == performance?.id,
+            \.feature!.id == feature?.id
 		]
-
-		if let performance {
-			return valueSet.update(
-				with: [\.performance.id == performance.id]
-			)
-		} else if let feature {
-			return valueSet.update(
-				with: [\.feature.id == feature.id]
-			)
-		}
-
-		return valueSet
 	}
 	
 	public static var foreignKeys: ForeignKeys {
 		[
 			\.event.id: \.event,
-			\.feature.id: \.feature!,
-			\.performance.id: \.performance!
+			\.feature!.id: \.feature!,
+			\.performance!.id: \.performance!
 		]
 	}
 }
