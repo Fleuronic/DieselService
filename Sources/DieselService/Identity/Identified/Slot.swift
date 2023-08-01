@@ -76,24 +76,24 @@ extension Slot.Identified: Catena.Model {
 		\.id ~ "id",
 		\.value.time ~ "time",
 		\.event ~ "event",
-		\.feature! ~? "feature",
-		\.performance! ~? "performance"
+		\.feature ~? "feature",
+		\.performance ~? "performance"
 	)
 	
 	public var valueSet: ValueSet<Self> {
         [
 			\.value.time == value.time,
 			\.event.id == event.id,
-            \.performance!.id == performance?.id,
-            \.feature!.id == feature?.id
+            \.performance.id == performance?.id,
+            \.feature.id == feature?.id
 		]
 	}
 	
 	public static var foreignKeys: ForeignKeys {
 		[
 			\.event.id: \.event,
-			\.feature!.id: \.feature!,
-			\.performance!.id: \.performance!
+			\.feature.id: \.feature!,
+			\.performance.id: \.performance!
 		]
 	}
 }
@@ -119,26 +119,13 @@ private extension Slot.Identified {
 }
 // MARK: -
 extension [Slot] {
-	var time: [TimeInterval?] {
-		map(\.time)
-	}
+	var time: [TimeInterval?] { map(\.time) }
 }
 
 // MARK: -
 extension [Slot.Identified] {
-	var id: [Slot.ID] {
-		map(\.id)
-	}
-
-	var value: [Slot] {
-		map(\.value)
-	}
-
-	var performance: [Performance.Identified] {
-		map(\.performance)
-	}
-
-	var feature: [Feature.Identified] {
-		map(\.feature)
-	}
+	var id: [Slot.ID] { map(\.id) }
+	var value: [Slot] { map(\.value) }
+	var performance: [Performance.Identified] { map(\.performance) }
+	var feature: [Feature.Identified] { map(\.feature) }
 }

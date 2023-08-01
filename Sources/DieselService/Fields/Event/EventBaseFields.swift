@@ -11,6 +11,7 @@ import protocol Identity.Identifiable
 public struct EventBaseFields {
 	public let id: Event.ID
 	public let name: String?
+	public let slug: String?
 	public let date: Date
 	public let timeZone: String
 	public let locationID: Location.ID
@@ -23,6 +24,7 @@ extension EventBaseFields: Decodable {
 		let container = try decoder.container(keyedBy: Event.Identified.CodingKeys.self)
 		id = try container.decode(Event.ID.self, forKey: .id)
 		name = try container.decodeIfPresent(String.self, forKey: .name)
+		slug = try container.decodeIfPresent(String.self, forKey: .slug)
 		date = try container.decode(Date.self, forKey: .date)
 		timeZone = try container.decode(String.self, forKey: .timeZone)
 
@@ -40,6 +42,7 @@ extension EventBaseFields: EventFields {
 		Self.init,
 		\.id,
 		\.value.name,
+		\.value.slug,
 		\.value.date,
 		\.value.timeZone,
 		\.location.id,

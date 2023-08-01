@@ -52,20 +52,20 @@ extension Performance.Identified: Catena.Model {
 		Self.init ~ "performances",
 		\.id ~ "id",
 		\.corps ~ "corps",
-        \.placement! ~? "placement"
+        \.placement ~? "placement"
 	)
 
 	public var valueSet: ValueSet<Self> {
         [
 			\.corps.id == corps.id,
-            \.placement!.id == placement?.id
+            \.placement.id == placement?.id
 		]
 	}
 
 	public static var foreignKeys: ForeignKeys {
 		[
 			\.corps.id: \.corps,
-            \.placement!.id: \.placement!
+            \.placement.id: \.placement!
 		]
 	}
 }
@@ -87,15 +87,7 @@ private extension Performance.Identified {
 
 // MARK: -
 extension [Performance.Identified] {
-	var id: [Performance.ID] {
-		map(\.id)
-	}
-
-	var corps: [Corps.Identified] {
-		map(\.corps)
-	}
-
-	var placement: [Placement.Identified] {
-		map(\.placement)
-	}
+	var id: [Performance.ID] { map(\.id) }
+	var corps: [Corps.Identified] { map(\.corps) }
+	var placement: [Placement.Identified] { map(\.placement) }
 }
