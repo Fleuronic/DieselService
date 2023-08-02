@@ -11,9 +11,8 @@ import protocol Catena.Model
 
 public struct IdentifiedPlacement {
     public let id: Self.ID
-    
-    let value: Placement
-    let division: Division.Identified
+    public let value: Placement
+    public let division: Division.Identified
 }
 
 // MARK: -
@@ -41,11 +40,11 @@ extension Placement.Identified: Identifiable {
 extension Placement.Identified: Catena.Model {
     // MARK: Model
     public static let schema = Schema(
-        Self.init ~ "placements",
-        \.id ~ "id",
-        \.value.rank ~ "rank",
-        \.value.score ~ "score",
-        \.division ~ "division"
+		Self.init ... "placements",
+        \.id * "id",
+        \.value.rank * "rank",
+        \.value.score * "score",
+        \.division --> "division"
     )
 
     public var valueSet: ValueSet<Self> {
@@ -82,13 +81,13 @@ private extension Placement.Identified {
 }
 
 // MARK: -
-extension [Placement] {
+public extension [Placement] {
 	var rank: [Int] { map(\.rank) }
 	var score: [Double] { map(\.score) }
 }
 
 // MARK: -
-extension [Placement.Identified] {
+public extension [Placement.Identified] {
 	var id: [Placement.ID] { map(\.id) }
 	var value: [Placement] { map(\.value) }
 	var division: [Division.Identified] { map(\.division) }

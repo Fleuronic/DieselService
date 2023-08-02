@@ -18,11 +18,10 @@ import protocol Catena.Model
 
 public struct IdentifiedSlot {
 	public let id: Self.ID
-
-	let value: Slot
-	let event: Event.Identified
-	let feature: Feature.Identified!
-	let performance: Performance.Identified!
+	public let value: Slot
+	public let event: Event.Identified
+	public let feature: Feature.Identified!
+	public let performance: Performance.Identified!
 }
 
 // MARK: -
@@ -50,12 +49,12 @@ public extension Slot {
 	}
 
 	static func isPartOfEvent(from events: [Event.Identified]) -> Predicate<Identified> {
-		events.map(\.value.name).contains(\.event.value.name)
+		events.compactMap(\.value.slug).contains(\.event.value.slug)
 	}
 }
 
 // MARK: -
-extension Slot.Identified {
+public extension Slot.Identified {
 	enum CodingKeys: String, CodingKey {
 		case id
 		case time
@@ -72,12 +71,12 @@ extension Slot.Identified: Identifiable {
 extension Slot.Identified: Catena.Model {
 	// MARK: Model
 	public static let schema = Schema(
-		Self.init ~ "slots",
-		\.id ~ "id",
-		\.value.time ~ "time",
-		\.event ~ "event",
-		\.feature ~? "feature",
-		\.performance ~? "performance"
+		Self.init ... "slots",
+		\.id * "id",
+		\.value.time * "time",
+		\.event --> "event",
+		\.feature -->? "feature",
+		\.performance -->? "performance"
 	)
 	
 	public var valueSet: ValueSet<Self> {
@@ -117,13 +116,14 @@ private extension Slot.Identified {
 		)
 	}
 }
+
 // MARK: -
-extension [Slot] {
+public extension [Slot] {
 	var time: [TimeInterval?] { map(\.time) }
 }
 
 // MARK: -
-extension [Slot.Identified] {
+public extension [Slot.Identified] {
 	var id: [Slot.ID] { map(\.id) }
 	var value: [Slot] { map(\.value) }
 	var performance: [Performance.Identified] { map(\.performance) }

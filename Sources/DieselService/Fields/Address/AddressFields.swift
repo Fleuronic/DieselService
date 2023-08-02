@@ -2,5 +2,6 @@
 
 import struct Diesel.Address
 import protocol Catena.Fields
+import protocol Schemata.ModelProjection
 
-protocol AddressFields: Fields where Model == Address.Identified {}
+public protocol AddressFields: Fields where Model == Address.Identified {}

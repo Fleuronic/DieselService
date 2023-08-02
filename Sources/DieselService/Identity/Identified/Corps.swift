@@ -11,9 +11,8 @@ import protocol Catena.Model
 
 public struct IdentifiedCorps {
 	public let id: Self.ID
-
-	let value: Corps
-	let location: Location.Identified
+	public let value: Corps
+	public let location: Location.Identified
 }
 
 // MARK: -
@@ -40,6 +39,12 @@ public extension Corps {
 
 // MARK: -
 public extension Corps.Identified {
+	enum CodingKeys: String, CodingKey {
+		case id
+		case name
+		case location
+	}
+
 	init(
 		fields: CorpsBaseFields,
 		location: Location.Identified
@@ -53,15 +58,6 @@ public extension Corps.Identified {
 }
 
 // MARK: -
-extension Corps.Identified {
-	enum CodingKeys: String, CodingKey {
-		case id
-		case name
-		case location
-	}
-}
-
-// MARK: -
 extension Corps.Identified: Identifiable {
 	public typealias RawIdentifier = UUID
 }
@@ -69,10 +65,10 @@ extension Corps.Identified: Identifiable {
 extension Corps.Identified: Catena.Model {
 	// MARK: Model
 	public static let schema = Schema(
-		Self.init ~ "corps",
-		\.id ~ "id",
-		\.value.name ~ "name",
-		\.location ~ "location"
+		Self.init ... "corps",
+		\.id * "id",
+		\.value.name * "name",
+		\.location --> "location"
 	)
 
 	public var valueSet: ValueSet<Self> {
@@ -104,12 +100,12 @@ private extension Corps.Identified {
 }
 
 // MARK: -
-extension [Corps] {
+public extension [Corps] {
 	var name: [String] { map(\.name) }
 }
 
 // MARK: -
-extension [Corps.Identified] {
+public extension [Corps.Identified] {
 	var id: [Corps.ID] { map(\.id) }
 	var value: [Corps] { map(\.value) }
 	var location: [Location.Identified] { map(\.location) }

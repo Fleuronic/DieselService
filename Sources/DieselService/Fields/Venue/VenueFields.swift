@@ -2,5 +2,6 @@
 
 import struct Diesel.Venue
 import protocol Catena.Fields
+import protocol Schemata.ModelProjection
 
-protocol VenueFields: Fields where Model == Venue.Identified {}
+public protocol VenueFields: Fields where Model == Venue.Identified {}

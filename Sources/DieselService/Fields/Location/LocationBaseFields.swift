@@ -1,8 +1,7 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Schemata
-
 import struct Diesel.Location
+import struct Schemata.Projection
 import protocol Identity.Identifiable
 
 public struct LocationBaseFields {

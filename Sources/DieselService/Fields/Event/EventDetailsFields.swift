@@ -1,13 +1,12 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Schemata
-
 import struct Diesel.Event
 import struct Diesel.Venue
 import struct Diesel.Address
 import struct Diesel.Location
 import struct Foundation.Date
 import struct Foundation.Calendar
+import struct Schemata.Projection
 import protocol Identity.Identifiable
 
 public struct EventDetailsFields {
@@ -25,7 +24,7 @@ public struct EventDetailsFields {
 // MARK: -
 extension EventDetailsFields: Decodable {
 	public init(from decoder: Decoder) throws {
-		let container = try decoder.container(keyedBy: Event.Identified.CodingKeys.self)
+		let container = try decoder.container(keyedBy: Model.CodingKeys.self)
 		id = try container.decode(Event.ID.self, forKey: .id)
 		date = try container.decode(Date.self, forKey: .date)
 		timeZone = try container.decode(String.self, forKey: .timeZone)

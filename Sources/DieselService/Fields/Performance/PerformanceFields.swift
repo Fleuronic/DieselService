@@ -2,5 +2,6 @@
 
 import struct Diesel.Performance
 import protocol Catena.Fields
+import protocol Schemata.ModelProjection
 
-protocol PerformanceFields: Fields where Model == Performance.Identified {}
+public protocol PerformanceFields: Fields where Model == Performance.Identified {}

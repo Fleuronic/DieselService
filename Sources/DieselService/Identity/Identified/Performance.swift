@@ -16,10 +16,9 @@ import protocol Catena.Model
 
 public struct IdentifiedPerformance {
 	public let id: Self.ID
-
-	let value: Performance
-	let corps: Corps.Identified
-    let placement: Placement.Identified!
+	public let value: Performance
+	public let corps: Corps.Identified
+    public let placement: Placement.Identified!
 }
 
 // MARK: -
@@ -49,10 +48,10 @@ extension Performance.Identified: Identifiable {
 extension Performance.Identified: Catena.Model {
 	// MARK: Model
 	public static let schema = Schema(
-		Self.init ~ "performances",
-		\.id ~ "id",
-		\.corps ~ "corps",
-        \.placement ~? "placement"
+		Self.init ... "performances",
+		\.id * "id",
+		\.corps --> "corps",
+        \.placement -->? "placement"
 	)
 
 	public var valueSet: ValueSet<Self> {
@@ -86,7 +85,7 @@ private extension Performance.Identified {
 }
 
 // MARK: -
-extension [Performance.Identified] {
+public extension [Performance.Identified] {
 	var id: [Performance.ID] { map(\.id) }
 	var corps: [Corps.Identified] { map(\.corps) }
 	var placement: [Placement.Identified] { map(\.placement) }

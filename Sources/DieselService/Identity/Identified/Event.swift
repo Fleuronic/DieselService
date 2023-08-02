@@ -15,11 +15,10 @@ import protocol Catena.Model
 
 public struct IdentifiedEvent {
 	public let id: Self.ID
-
-	let value: Event
-	let location: Location.Identified
-    let venue: Venue.Identified!
-	let slots: [Slot.Identified]
+	public let value: Event
+	public let location: Location.Identified
+    public let venue: Venue.Identified!
+	public let slots: [Slot.Identified]
 }
 
 // MARK: -
@@ -48,6 +47,17 @@ public extension Event {
 
 // MARK: -
 public extension Event.Identified {
+	enum CodingKeys: String, CodingKey {
+		case id
+		case name
+		case slug
+		case date
+		case timeZone
+		case location
+		case venue
+		case slots
+	}
+
 	init(
 		fields: EventBaseFields,
 		location: Location.Identified,
@@ -67,20 +77,6 @@ public extension Event.Identified {
 }
 
 // MARK: -
-extension Event.Identified {
-	enum CodingKeys: String, CodingKey {
-		case id
-		case name
-		case slug
-		case date
-		case timeZone
-		case location
-		case venue
-		case slots
-	}
-}
-
-// MARK: -
 extension Event.Identified: Identifiable {
 	public typealias RawIdentifier = UUID
 }
@@ -88,15 +84,15 @@ extension Event.Identified: Identifiable {
 extension Event.Identified: Model {
 	// MARK: Model
 	public static let schema = Schema(
-		Self.init ~ "events",
-		\.id ~ "id",
-		\.value.name ~ "name",
-		\.value.slug ~ "slug",
-		\.value.date ~ "date",
-		\.value.timeZone ~ "time_zone",
-		\.location ~ "location",
-		\.venue ~? "venue",
-		\.slots ~ \Slot.Identified.event
+		Self.init ... "events",
+		\.id * "id",
+		\.value.name * "name",
+		\.value.slug * "slug",
+		\.value.date * "date",
+		\.value.timeZone * "time_zone",
+		\.location --> "location",
+		\.venue -->? "venue",
+		\.slots -->> \.event
 	)
 
 	public var valueSet: ValueSet<Self> {

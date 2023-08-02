@@ -2,5 +2,6 @@
 
 import struct Diesel.Slot
 import protocol Catena.Fields
+import protocol Schemata.ModelProjection
 
-protocol SlotFields: Fields where Model == Slot.Identified {}
+public protocol SlotFields: Fields where Model == Slot.Identified {}

@@ -2,5 +2,6 @@
 
 import struct Diesel.Corps
 import protocol Catena.Fields
+import protocol Schemata.ModelProjection
 
-protocol CorpsFields: Fields where Model == Corps.Identified {}
+public protocol CorpsFields: Fields where Model == Corps.Identified {}

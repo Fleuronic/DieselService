@@ -10,8 +10,7 @@ import protocol Catena.Model
 
 public struct IdentifiedDivision {
     public let id: Self.ID
-    
-    let value: Division
+    public let value: Division
 }
 
 // MARK: -
@@ -39,9 +38,9 @@ extension Division.Identified: Identifiable {
 extension Division.Identified: Catena.Model {
     // MARK: Model
     public static let schema = Schema(
-        Self.init ~ "divisions",
-        \.id ~ "id",
-        \.value.name ~ "name"
+		Self.init ... "divisions",
+        \.id * "id",
+        \.value.name * "name"
     )
 
     public var valueSet: ValueSet<Self> {
@@ -66,12 +65,12 @@ private extension Division.Identified {
 }
 
 // MARK: -
-extension [Division] {
+public extension [Division] {
 	var name: [String] { map(\.name) }
 }
 
 // MARK: -
-extension [Division.Identified] {
+public extension [Division.Identified] {
 	var id: [Division.ID] { map(\.id) }
 	var value: [Division] { map(\.value) }
 }

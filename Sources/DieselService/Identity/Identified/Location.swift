@@ -10,8 +10,7 @@ import protocol Catena.Model
 
 public struct IdentifiedLocation {
 	public let id: Self.ID
-	
-    let value: Location
+    public let value: Location
 }
 
 // MARK: -
@@ -51,10 +50,10 @@ extension Location.Identified: Identifiable {
 extension Location.Identified: Catena.Model {
 	// MARK: Model
 	public static let schema = Schema(
-		Self.init ~ "locations",
-		\.id ~ "id",
-		\.value.city ~ "city",
-		\.value.state ~ "state"
+		Self.init ... "locations",
+		\.id * "id",
+		\.value.city * "city",
+		\.value.state * "state"
 	)
 
 	public var valueSet: ValueSet<Self> {
@@ -82,13 +81,13 @@ private extension Location.Identified {
 }
 
 // MARK: -
-extension [Location] {
+public extension [Location] {
 	var city: [String] { map(\.city) }
 	var state: [String] { map(\.state) }
 }
 
 // MARK: -
-extension [Location.Identified] {
+public extension [Location.Identified] {
 	var id: [Location.ID] { map(\.id) }
 	var value: [Location] { map(\.value) }
 }

@@ -2,5 +2,6 @@
 
 import struct Diesel.Placement
 import protocol Catena.Fields
+import protocol Schemata.ModelProjection
 
-protocol PlacementFields: Fields where Model == Placement.Identified {}
+public protocol PlacementFields: Fields where Model == Placement.Identified {}

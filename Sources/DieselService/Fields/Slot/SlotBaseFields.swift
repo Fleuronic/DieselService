@@ -1,9 +1,8 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Schemata
-
 import struct Diesel.Slot
 import struct Foundation.TimeInterval
+import struct Schemata.Projection
 import protocol Identity.Identifiable
 
 public struct SlotBaseFields {

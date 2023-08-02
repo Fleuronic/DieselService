@@ -1,9 +1,9 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Schemata
-
 import struct Diesel.Venue
 import struct Diesel.Address
+import struct Schemata.Projection
+import enum Catenary.IDCodingKeys
 import protocol Identity.Identifiable
 
 public struct VenueBaseFields {
@@ -26,7 +26,7 @@ extension VenueBaseFields: VenueFields {
 // MARK: -
 extension VenueBaseFields: Decodable {
     public init(from decoder: Decoder) throws {
-		let container = try decoder.container(keyedBy: Venue.Identified.CodingKeys.self)
+		let container = try decoder.container(keyedBy: Model.CodingKeys.self)
         id = try container.decode(Venue.ID.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
 

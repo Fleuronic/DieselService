@@ -2,5 +2,6 @@
 
 import struct Diesel.Feature
 import protocol Catena.Fields
+import protocol Schemata.ModelProjection
 
-protocol FeatureFields: Fields where Model == Feature.Identified {}
+public protocol FeatureFields: Fields where Model == Feature.Identified {}

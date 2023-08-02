@@ -1,11 +1,11 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Schemata
-
 import struct Diesel.Event
 import struct Diesel.Location
 import struct Diesel.Venue
+import struct Schemata.Projection
 import struct Foundation.Date
+import enum Catenary.IDCodingKeys
 import protocol Identity.Identifiable
 
 public struct EventBaseFields {
@@ -20,8 +20,9 @@ public struct EventBaseFields {
 
 // MARK: -
 extension EventBaseFields: Decodable {
+	// MARK: Decodable
 	public init(from decoder: Decoder) throws {
-		let container = try decoder.container(keyedBy: Event.Identified.CodingKeys.self)
+		let container = try decoder.container(keyedBy: Model.CodingKeys.self)
 		id = try container.decode(Event.ID.self, forKey: .id)
 		name = try container.decodeIfPresent(String.self, forKey: .name)
 		slug = try container.decodeIfPresent(String.self, forKey: .slug)
@@ -46,6 +47,6 @@ extension EventBaseFields: EventFields {
 		\.value.date,
 		\.value.timeZone,
 		\.location.id,
-		\.venue.id
+		\.venue?.id
 	)
 }

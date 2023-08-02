@@ -11,9 +11,8 @@ import protocol Catena.Model
 
 public struct IdentifiedVenue {
     public let id: Self.ID
-
-    let value: Venue
-    let address: Address.Identified
+    public let value: Venue
+    public let address: Address.Identified
 }
 
 // MARK: -
@@ -39,6 +38,12 @@ public extension Venue {
 
 // MARK: -
 public extension Venue.Identified {
+	enum CodingKeys: String, CodingKey {
+		case id
+		case name
+		case address
+	}
+
 	init(
 		fields: VenueBaseFields,
 		address: Address.Identified
@@ -52,15 +57,6 @@ public extension Venue.Identified {
 }
 
 // MARK: -
-extension Venue.Identified {
-	enum CodingKeys: String, CodingKey {
-		case id
-		case name
-		case address
-	}
-}
-
-// MARK: -
 extension Venue.Identified: Identifiable {
     public typealias RawIdentifier = UUID
 }
@@ -68,10 +64,10 @@ extension Venue.Identified: Identifiable {
 extension Venue.Identified: Model {
     // MARK: Model
     public static let schema = Schema(
-        Self.init ~ "venues",
-        \.id ~ "id",
-        \.value.name ~ "name",
-        \.address ~ "address"
+		Self.init ... "venues",
+        \.id * "id",
+        \.value.name * "name",
+        \.address --> "address"
     )
 
     public var valueSet: ValueSet<Self> {

@@ -2,5 +2,6 @@
 
 import struct Diesel.Event
 import protocol Catena.Fields
+import protocol Schemata.ModelProjection
 
-protocol EventFields: Fields where Model == Event.Identified {}
+public protocol EventFields: Fields where Model == Event.Identified {}

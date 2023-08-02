@@ -15,9 +15,8 @@ import protocol Catena.Model
 
 public struct IdentifiedFeature {
 	public let id: Self.ID
-
-	let value: Feature
-	let corps: Corps.Identified!
+	public let value: Feature
+	public let corps: Corps.Identified!
 }
 
 // MARK: -
@@ -50,10 +49,10 @@ extension Feature.Identified: Identifiable {
 extension Feature.Identified: Catena.Model {
 	// MARK: Model
 	public static let schema = Schema(
-		Self.init ~ "features",
-		\.id ~ "id",
-		\.value.name ~ "name",
-		\.corps ~? "corps"
+		Self.init ... "features",
+		\.id * "id",
+		\.value.name * "name",
+		\.corps -->? "corps"
 	)
 
 	public var valueSet: ValueSet<Self> {
@@ -87,12 +86,12 @@ private extension Feature.Identified {
 }
 
 // MARK: -
-extension [Feature] {
+public extension [Feature] {
 	var name: [String] { map(\.name) }
 }
 
 // MARK: -
-extension [Feature.Identified] {
+public extension [Feature.Identified] {
 	var id: [Feature.ID] { map(\.id) }
 	var value: [Feature] { map(\.value) }
     var corps: [Corps.Identified] { map(\.corps) }

@@ -1,7 +1,5 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Schemata
-
 import struct Diesel.Slot
 import struct Diesel.Feature
 import struct Diesel.Corps
@@ -9,6 +7,7 @@ import struct Diesel.Performance
 import struct Diesel.Location
 import struct Diesel.Placement
 import struct Diesel.Division
+import struct Schemata.Projection
 import struct Foundation.TimeInterval
 import protocol Identity.Identifiable
 
@@ -28,7 +27,7 @@ public struct SlotListFields {
 // MARK: -
 extension SlotListFields: Decodable {
 	public init(from decoder: Decoder) throws {
-		let container = try decoder.container(keyedBy: Slot.Identified.CodingKeys.self)
+		let container = try decoder.container(keyedBy: Model.CodingKeys.self)
 		id = try container.decode(Slot.ID.self, forKey: .id)
 		time = try container.decodeIfPresent(TimeInterval.self, forKey: .time)
 
