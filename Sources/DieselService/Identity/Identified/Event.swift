@@ -40,8 +40,8 @@ public extension Event {
 		)
 	}
 
-	static func hasName(fromNamesOf events: [Identified]) -> Predicate<Identified> {
-		events.map(\.value.name).contains(\.value.name)
+	static func `is`(in events: [Identified]) -> Predicate<Identified> {
+		events.compactMap(\.value.slug).contains(\.value.slug)
 	}
 }
 
