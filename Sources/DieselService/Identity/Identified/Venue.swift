@@ -1,6 +1,5 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Identity
 import Schemata
 import PersistDB
 
@@ -8,6 +7,7 @@ import struct Diesel.Venue
 import struct Diesel.Address
 import struct Foundation.UUID
 import protocol Catena.Model
+import protocol Identity.Identifiable
 
 public struct IdentifiedVenue {
     public let id: Self.ID
@@ -38,12 +38,6 @@ public extension Venue {
 
 // MARK: -
 public extension Venue.Identified {
-	enum CodingKeys: String, CodingKey {
-		case id
-		case name
-		case address
-	}
-
 	init(
 		fields: VenueBaseFields,
 		address: Address.Identified
@@ -77,7 +71,7 @@ extension Venue.Identified: Model {
         ]
     }
     
-    public static var foreignKeys: ForeignKeys {
+    public static var relationships: Relationships {
         [
             \.address.id: \.address
         ]

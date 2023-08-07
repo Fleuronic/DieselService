@@ -1,6 +1,5 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Identity
 import Schemata
 import PersistDB
 
@@ -8,6 +7,7 @@ import struct Diesel.Placement
 import struct Diesel.Division
 import struct Foundation.UUID
 import protocol Catena.Model
+import protocol Identity.Identifiable
 
 public struct IdentifiedPlacement {
     public let id: Self.ID
@@ -55,7 +55,7 @@ extension Placement.Identified: Catena.Model {
         ]
     }
     
-    public static var foreignKeys: ForeignKeys {
+    public static var relationships: Relationships {
         [
             \.division.id: \.division
         ]

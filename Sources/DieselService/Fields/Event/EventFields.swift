@@ -5,3 +5,17 @@ import protocol Catena.Fields
 import protocol Schemata.ModelProjection
 
 public protocol EventFields: Fields where Model == Event.Identified {}
+
+// MARK: -
+public extension Event.Identified {
+	enum CodingKeys: String, CodingKey {
+		case id
+		case name
+		case slug
+		case date
+		case timeZone
+		case location
+		case venue
+		case slots
+	}
+}

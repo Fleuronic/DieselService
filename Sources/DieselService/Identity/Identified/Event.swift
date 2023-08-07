@@ -1,6 +1,5 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Identity
 import Schemata
 import PersistDB
 
@@ -12,6 +11,7 @@ import struct Diesel.Slot
 import struct Foundation.UUID
 import struct Foundation.Date
 import protocol Catena.Model
+import protocol Identity.Identifiable
 
 public struct IdentifiedEvent {
 	public let id: Self.ID
@@ -47,17 +47,6 @@ public extension Event {
 
 // MARK: -
 public extension Event.Identified {
-	enum CodingKeys: String, CodingKey {
-		case id
-		case name
-		case slug
-		case date
-		case timeZone
-		case location
-		case venue
-		case slots
-	}
-
 	init(
 		fields: EventBaseFields,
 		location: Location.Identified,
@@ -106,7 +95,7 @@ extension Event.Identified: Model {
 		]
 	}
 
-	public static var foreignKeys: ForeignKeys {
+	public static var relationships: Relationships {
 		[
 			\.location.id: \.location,
             \.venue.id: \.venue!

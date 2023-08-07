@@ -1,6 +1,5 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Identity
 import Schemata
 import PersistDB
 
@@ -15,6 +14,7 @@ import struct Diesel.Performance
 import struct Foundation.UUID
 import struct Foundation.TimeInterval
 import protocol Catena.Model
+import protocol Identity.Identifiable
 
 public struct IdentifiedSlot {
 	public let id: Self.ID
@@ -54,16 +54,6 @@ public extension Slot {
 }
 
 // MARK: -
-public extension Slot.Identified {
-	enum CodingKeys: String, CodingKey {
-		case id
-		case time
-		case feature
-		case performance
-	}
-}
-
-// MARK: -
 extension Slot.Identified: Identifiable {
 	public typealias RawIdentifier = UUID
 }
@@ -88,7 +78,7 @@ extension Slot.Identified: Catena.Model {
 		]
 	}
 	
-	public static var foreignKeys: ForeignKeys {
+	public static var relationships: Relationships {
 		[
 			\.event.id: \.event,
 			\.feature.id: \.feature!,

@@ -1,7 +1,6 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Identity
-
+import struct Identity.Identifier
 import struct Foundation.UUID
 
 extension Identifier where Value.RawIdentifier == UUID {

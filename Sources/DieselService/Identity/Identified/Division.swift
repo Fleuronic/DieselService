@@ -1,12 +1,12 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Identity
 import Schemata
 import PersistDB
 
 import struct Diesel.Division
 import struct Foundation.UUID
 import protocol Catena.Model
+import protocol Identity.Identifiable
 
 public struct IdentifiedDivision {
     public let id: Self.ID

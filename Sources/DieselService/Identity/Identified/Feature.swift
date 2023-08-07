@@ -1,6 +1,5 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Identity
 import Schemata
 import PersistDB
 
@@ -12,6 +11,7 @@ import struct Diesel.Feature
 import struct Foundation.UUID
 import struct Foundation.TimeInterval
 import protocol Catena.Model
+import protocol Identity.Identifiable
 
 public struct IdentifiedFeature {
 	public let id: Self.ID
@@ -62,7 +62,7 @@ extension Feature.Identified: Catena.Model {
 		]
 	}
 
-	public static var foreignKeys: ForeignKeys {
+	public static var relationships: Relationships {
 		[
 			\.corps.id: \.corps!
 		]
