@@ -6,7 +6,7 @@
       "location" : "https://github.com/Fleuronic/Catena",
       "state" : {
         "branch" : "main",
-        "revision" : "8323ea025431d255506c292fff1c8ccd016cec57"
+        "revision" : "ef685764ba13c9da00c6bb0a0089babaa7f9ecd2"
       }
     },
     {
@@ -15,7 +15,7 @@
       "location" : "https://github.com/Fleuronic/Catenary",
       "state" : {
         "branch" : "main",
-        "revision" : "110fb9e750a901cd0b0b23ccd3af300209e33075"
+        "revision" : "80e8f3800b0027ee1164f79eac6f2ed903542b61"
       }
     },
     {
@@ -42,7 +42,7 @@
       "location" : "https://github.com/Fleuronic/Diesel",
       "state" : {
         "branch" : "main",
-        "revision" : "11e6c37bc9c15ea0c67bcab2e421d68621fddb31"
+        "revision" : "1ea935ca10ec4c82b5705691cb7c834f57ed0f54"
       }
     },
     {
@@ -69,7 +69,7 @@
       "location" : "https://github.com/Fleuronic/PersistDB",
       "state" : {
         "branch" : "master",
-        "revision" : "d4b550cb11f2abad400431d308291974cd14a6b9"
+        "revision" : "c5938f5614d937bd342a44a6960108fa754abac8"
       }
     },
     {
@@ -87,7 +87,7 @@
       "location" : "https://github.com/Fleuronic/Schemata",
       "state" : {
         "branch" : "master",
-        "revision" : "32be7bd5f65405678257aeee76859b03cffb89e7"
+        "revision" : "103895ce834495061e9d059ea429091842527e96"
       }
     }
   ],

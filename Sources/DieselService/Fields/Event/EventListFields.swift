@@ -1,6 +1,7 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
 import struct Diesel.Event
+import struct Diesel.Show
 import struct Diesel.Location
 import struct Schemata.Projection
 import struct Foundation.Date
@@ -10,7 +11,7 @@ import protocol Identity.Identifiable
 public struct EventListFields {
 	public let id: Event.ID
 	public let date: Date
-	public let name: String?
+	public let showName: String?
 	public let city: String
 	public let state: String
 }
@@ -22,7 +23,9 @@ extension EventListFields: Decodable {
 		let container = try decoder.container(keyedBy: Model.CodingKeys.self)
 		id = try container.decode(Event.ID.self, forKey: .id)
 		date = try container.decode(Date.self, forKey: .date)
-		name = try container.decodeIfPresent(String.self, forKey: .name)
+
+		let showContainer = try? container.nestedContainer(keyedBy: Show.CodingKeys.self, forKey: .show)
+		showName = try showContainer?.decode(String.self, forKey: .name)
 
 		let locationContainer = try container.nestedContainer(keyedBy: Location.CodingKeys.self, forKey: .location)
 		city = try locationContainer.decode(String.self, forKey: .city)
@@ -36,10 +39,17 @@ extension EventListFields: EventFields {
 		Self.init,
 		\.id,
 		\.value.date,
-		\.value.name,
+		\.show.value.name,
 		\.location.value.city,
 		\.location.value.state
 	)
+}
+
+// MARK: -
+private extension Show {
+	enum CodingKeys: String, CodingKey {
+		case name
+	}
 }
 
 // MARK: -

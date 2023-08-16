@@ -10,7 +10,7 @@ public protocol EventFields: Fields where Model == Event.Identified {}
 public extension Event.Identified {
 	enum CodingKeys: String, CodingKey {
 		case id
-		case name
+		case show
 		case slug
 		case date
 		case timeZone

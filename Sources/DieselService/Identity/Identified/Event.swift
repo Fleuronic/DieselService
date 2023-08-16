@@ -4,6 +4,7 @@ import Schemata
 import PersistDB
 
 import struct Diesel.Event
+import struct Diesel.Show
 import struct Diesel.Location
 import struct Diesel.Venue
 import struct Diesel.Address
@@ -16,6 +17,7 @@ import protocol Identity.Identifiable
 public struct IdentifiedEvent {
 	public let id: Self.ID
 	public let value: Event
+	public let show: Show.Identified!
 	public let location: Location.Identified
     public let venue: Venue.Identified!
 	public let slots: [Slot.Identified]
@@ -28,12 +30,14 @@ public extension Event {
 
 	func identified(
 		id: ID? = nil,
+		show: Show.Identified?,
 		location: Location.Identified,
 		venue: Venue.Identified?
 	) -> Identified {
         .init(
 			id: id ?? .random,
 			value: self,
+			show: show,
 			location: location,
             venue: venue,
 			slots: []
@@ -49,15 +53,16 @@ public extension Event {
 public extension Event.Identified {
 	init(
 		fields: EventBaseFields,
+		show: Show.Identified?,
 		location: Location.Identified,
 		venue: Venue.Identified?
 	) {
 		self.init(
 			id: fields.id,
-			name: fields.name,
 			slug: fields.slug,
 			date: fields.date,
 			timeZone: fields.timeZone,
+			show: show,
 			location: location,
 			venue: venue,
 			slots: []
@@ -75,10 +80,10 @@ extension Event.Identified: Model {
 	public static let schema = Schema(
 		Self.init ... "events",
 		\.id * "id",
-		\.value.name * "name",
 		\.value.slug * "slug",
 		\.value.date * "date",
 		\.value.timeZone * "time_zone",
+		\.show -->? "show",
 		\.location --> "location",
 		\.venue -->? "venue",
 		\.slots -->> \.event
@@ -86,9 +91,9 @@ extension Event.Identified: Model {
 
 	public var valueSet: ValueSet<Self> {
         [
-			\.value.name == value.name,
 			\.value.slug == value.slug,
 			\.value.date == value.date,
+			\.show.id == show?.id,
 			\.value.timeZone == value.timeZone,
 			\.location.id == location.id,
             \.venue.id == venue?.id
@@ -97,6 +102,7 @@ extension Event.Identified: Model {
 
 	public static var relationships: Relationships {
 		[
+			\.show.id: \.show!,
 			\.location.id: \.location,
             \.venue.id: \.venue!
 		]
@@ -111,21 +117,21 @@ extension Event.Identified: Model {
 private extension Event.Identified {
 	init(
 		id: ID,
-		name: String?,
 		slug: String?,
 		date: Date,
 		timeZone: String,
+		show: Show.Identified?,
 		location: Location.Identified,
 		venue: Venue.Identified?,
 		slots: [Slot.Identified]
 	) {
 		self.id = id
+		self.show = show
 		self.location = location
 		self.venue = venue
 		self.slots = slots
 
 		value = .init(
-			name: name,
 			slug: slug,
 			date: date,
 			timeZone: timeZone

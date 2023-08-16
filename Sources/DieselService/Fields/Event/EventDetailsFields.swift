@@ -1,6 +1,7 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
 import struct Diesel.Event
+import struct Diesel.Show
 import struct Diesel.Venue
 import struct Diesel.Address
 import struct Diesel.Location
@@ -13,7 +14,7 @@ public struct EventDetailsFields {
 	public let id: Event.ID
 	public let date: Date
 	public let timeZone: String
-	public let name: String?
+	public let showName: String?
 	public let city: String
 	public let state: String
 	public let venueName: String?
@@ -28,7 +29,9 @@ extension EventDetailsFields: Decodable {
 		id = try container.decode(Event.ID.self, forKey: .id)
 		date = try container.decode(Date.self, forKey: .date)
 		timeZone = try container.decode(String.self, forKey: .timeZone)
-		name = try container.decodeIfPresent(String.self, forKey: .name)
+
+		let showContainer = try? container.nestedContainer(keyedBy: Show.CodingKeys.self, forKey: .venue)
+		showName = try showContainer?.decode(String.self, forKey: .name)
 
 		let locationContainer = try container.nestedContainer(keyedBy: Location.CodingKeys.self, forKey: .location)
 		city = try locationContainer.decode(String.self, forKey: .city)
@@ -50,13 +53,20 @@ extension EventDetailsFields: EventFields {
 		\.id,
 		\.value.date,
 		\.value.timeZone,
-		\.value.name,
+		\.show.value.name,
 		\.location.value.city,
 		\.location.value.state,
 		\.venue.value.name,
 		\.venue.address.value.streetAddress,
 		\.venue.address.value.zipCode
 	)
+}
+
+// MARK: -
+private extension Show {
+	enum CodingKeys: String, CodingKey {
+		case name
+	}
 }
 
 // MARK: -
