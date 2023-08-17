@@ -38,7 +38,7 @@ extension Show.Identified: Identifiable {
 extension Show.Identified: Catena.Model {
 	// MARK: Model
 	public static let schema = Schema(
-		Self.init ... "Shows",
+		Self.init ... "shows",
 		\.id * "id",
 		\.value.name * "name"
 	)
