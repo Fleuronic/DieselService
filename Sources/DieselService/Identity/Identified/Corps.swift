@@ -16,7 +16,6 @@ public struct IdentifiedCorps {
 }
 
 // MARK: -
-
 public extension Corps {
 	typealias ID = Identified.ID
 	typealias Identified = IdentifiedCorps
@@ -43,7 +42,6 @@ public extension Corps {
 }
 
 // MARK: -
-
 public extension Corps.Identified {
 	init(
 		fields: CorpsBaseFields,
@@ -66,7 +64,6 @@ public extension Corps.Identified {
 }
 
 // MARK: -
-
 extension Corps.Identified: Identifiable {
 	public typealias RawIdentifier = UUID
 }
@@ -96,7 +93,6 @@ extension Corps.Identified: Catena.Model {
 }
 
 // MARK: -
-
 private extension Corps.Identified {
 	init(
 		id: ID,
@@ -111,13 +107,11 @@ private extension Corps.Identified {
 }
 
 // MARK: -
-
 public extension [Corps] {
 	var name: [String] { map(\.name) }
 }
 
 // MARK: -
-
 public extension [Corps.Identified] {
 	var id: [Corps.ID] { map(\.id) }
 	var value: [Corps] { map(\.value) }
