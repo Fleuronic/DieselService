@@ -1,7 +1,7 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import PersistDB
 import Schemata
+import PersistDB
 
 import protocol Catena.Model
 import struct Diesel.Corps
@@ -75,7 +75,7 @@ extension Corps.Identified: Catena.Model {
 	// MARK: Model
 
 	public static let schema = Schema(
-		Self.init..."corps",
+		Self.init ... "corps",
 		\.id * "id",
 		\.value.name * "name",
 		\.location --> "location"
