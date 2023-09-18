@@ -1,7 +1,7 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import struct Identity.Identifier
 import struct Foundation.UUID
+import struct Identity.Identifier
 
 extension Identifier where Value.RawIdentifier == UUID {
 	static var random: Self {

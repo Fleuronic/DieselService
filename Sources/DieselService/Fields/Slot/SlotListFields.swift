@@ -1,15 +1,15 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import struct Diesel.Slot
-import struct Diesel.Feature
 import struct Diesel.Corps
-import struct Diesel.Performance
-import struct Diesel.Location
-import struct Diesel.Placement
 import struct Diesel.Division
-import struct Schemata.Projection
+import struct Diesel.Feature
+import struct Diesel.Location
+import struct Diesel.Performance
+import struct Diesel.Placement
+import struct Diesel.Slot
 import struct Foundation.TimeInterval
 import protocol Identity.Identifiable
+import struct Schemata.Projection
 
 public struct SlotListFields {
 	public let id: Slot.ID
@@ -19,9 +19,9 @@ public struct SlotListFields {
 	public let performingCorpsName: String?
 	public let performingCorpsCity: String?
 	public let performingCorpsState: String?
-    public let performancePlacementRank: Int?
-    public let performancePlacementScore: Double?
-    public let performancePlacementDivisionName: String?
+	public let performancePlacementRank: Int?
+	public let performancePlacementScore: Double?
+	public let performancePlacementDivisionName: String?
 }
 
 // MARK: -
@@ -44,13 +44,13 @@ extension SlotListFields: Decodable {
 		let performingCorpsLocationContainer = try performingCorpsContainer?.nestedContainer(keyedBy: Location.CodingKeys.self, forKey: .location)
 		performingCorpsCity = try performingCorpsLocationContainer?.decode(String.self, forKey: .city)
 		performingCorpsState = try performingCorpsLocationContainer?.decode(String.self, forKey: .state)
-        
-        let performancePlacementContainer = try? performanceContainer?.nestedContainer(keyedBy: Placement.CodingKeys.self, forKey: .placement)
-        performancePlacementRank = try performancePlacementContainer?.decode(Int.self, forKey: .rank)
-        performancePlacementScore = try performancePlacementContainer?.decode(Double.self, forKey: .score)
-        
-        let divisionContainer = try performancePlacementContainer?.nestedContainer(keyedBy: Division.CodingKeys.self, forKey: .division)
-        performancePlacementDivisionName = try divisionContainer?.decode(String.self, forKey: .name)
+
+		let performancePlacementContainer = try? performanceContainer?.nestedContainer(keyedBy: Placement.CodingKeys.self, forKey: .placement)
+		performancePlacementRank = try performancePlacementContainer?.decode(Int.self, forKey: .rank)
+		performancePlacementScore = try performancePlacementContainer?.decode(Double.self, forKey: .score)
+
+		let divisionContainer = try performancePlacementContainer?.nestedContainer(keyedBy: Division.CodingKeys.self, forKey: .division)
+		performancePlacementDivisionName = try divisionContainer?.decode(String.self, forKey: .name)
 	}
 }
 
@@ -66,9 +66,9 @@ extension SlotListFields: SlotFields {
 		\.performance.corps.value.name,
 		\.performance.corps.location.value.city,
 		\.performance.corps.location.value.state,
-        \.performance.placement.value.rank,
-        \.performance.placement.value.score,
-        \.performance.placement.division.value.name
+		\.performance.placement.value.rank,
+		\.performance.placement.value.score,
+		\.performance.placement.division.value.name
 	)
 }
 
@@ -84,7 +84,7 @@ private extension Feature {
 private extension Performance {
 	enum CodingKeys: String, CodingKey {
 		case corps
-        case placement
+		case placement
 	}
 }
 
@@ -106,16 +106,16 @@ private extension Location {
 
 // MARK: -
 private extension Placement {
-    enum CodingKeys: String, CodingKey {
-        case rank
-        case score
-        case division
-    }
+	enum CodingKeys: String, CodingKey {
+		case rank
+		case score
+		case division
+	}
 }
 
 // MARK: -
 private extension Division {
-    enum CodingKeys: String, CodingKey {
-        case name
-    }
+	enum CodingKeys: String, CodingKey {
+		case name
+	}
 }

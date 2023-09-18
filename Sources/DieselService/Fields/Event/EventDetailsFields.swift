@@ -1,19 +1,19 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
+import struct Diesel.Address
 import struct Diesel.Event
+import struct Diesel.Location
 import struct Diesel.Show
 import struct Diesel.Venue
-import struct Diesel.Address
-import struct Diesel.Location
-import struct Foundation.Date
 import struct Foundation.Calendar
-import struct Schemata.Projection
+import struct Foundation.Date
 import protocol Identity.Identifiable
+import struct Schemata.Projection
 
 public struct EventDetailsFields {
 	public let id: Event.ID
 	public let date: Date
-	public let timeZone: String
+	public let timeZone: String?
 	public let showName: String?
 	public let city: String
 	public let state: String

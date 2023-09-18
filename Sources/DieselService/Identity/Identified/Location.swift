@@ -1,21 +1,21 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Schemata
 import PersistDB
+import Schemata
 
+import protocol Catena.Model
 import struct Diesel.Location
 import struct Foundation.UUID
-import protocol Catena.Model
 import protocol Identity.Identifiable
 
 public struct IdentifiedLocation {
 	public let id: Self.ID
-    public let value: Location
+	public let value: Location
 }
 
 // MARK: -
 public extension Location {
-    typealias ID = Identified.ID
+	typealias ID = Identified.ID
 	typealias Identified = IdentifiedLocation
 
 	func identified(id: ID? = nil) -> Identified {
@@ -24,11 +24,11 @@ public extension Location {
 			value: self
 		)
 	}
-    
-    var matches: Predicate<Identified> {
-        \.value.city == city &&
-		\.value.state == state
-    }
+
+	var matches: Predicate<Identified> {
+		\.value.city == city &&
+			\.value.state == state
+	}
 }
 
 // MARK: -
@@ -50,7 +50,7 @@ extension Location.Identified: Identifiable {
 extension Location.Identified: Catena.Model {
 	// MARK: Model
 	public static let schema = Schema(
-		Self.init ... "locations",
+		Self.init..."locations",
 		\.id * "id",
 		\.value.city * "city",
 		\.value.state * "state"

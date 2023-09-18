@@ -1,20 +1,20 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import struct Diesel.Event
-import struct Diesel.Show
-import struct Diesel.Location
-import struct Diesel.Venue
-import struct Schemata.Projection
-import struct Foundation.Date
 import enum Catenary.IDCodingKeys
+import struct Diesel.Event
+import struct Diesel.Location
+import struct Diesel.Show
+import struct Diesel.Venue
+import struct Foundation.Date
 import protocol Identity.Identifiable
+import struct Schemata.Projection
 
 public struct EventBaseFields {
 	public let id: Event.ID
 	public let showID: Show.ID?
 	public let slug: String?
 	public let date: Date
-	public let timeZone: String
+	public let timeZone: String?
 	public let locationID: Location.ID
 	public let venueID: Venue.ID?
 }

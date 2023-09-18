@@ -1,17 +1,17 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Schemata
 import PersistDB
+import Schemata
 
-import struct Diesel.Event
-import struct Diesel.Show
-import struct Diesel.Location
-import struct Diesel.Venue
-import struct Diesel.Address
-import struct Diesel.Slot
-import struct Foundation.UUID
-import struct Foundation.Date
 import protocol Catena.Model
+import struct Diesel.Address
+import struct Diesel.Event
+import struct Diesel.Location
+import struct Diesel.Show
+import struct Diesel.Slot
+import struct Diesel.Venue
+import struct Foundation.Date
+import struct Foundation.UUID
 import protocol Identity.Identifiable
 
 public struct IdentifiedEvent {
@@ -19,13 +19,13 @@ public struct IdentifiedEvent {
 	public let value: Event
 	public let show: Show.Identified!
 	public let location: Location.Identified
-    public let venue: Venue.Identified!
+	public let venue: Venue.Identified!
 	public let slots: [Slot.Identified]
 }
 
 // MARK: -
 public extension Event {
-    typealias ID = Identified.ID
+	typealias ID = Identified.ID
 	typealias Identified = IdentifiedEvent
 
 	func identified(
@@ -34,12 +34,12 @@ public extension Event {
 		location: Location.Identified,
 		venue: Venue.Identified?
 	) -> Identified {
-        .init(
+		.init(
 			id: id ?? .random,
 			value: self,
 			show: show,
 			location: location,
-            venue: venue,
+			venue: venue,
 			slots: []
 		)
 	}
@@ -78,7 +78,7 @@ extension Event.Identified: Identifiable {
 extension Event.Identified: Model {
 	// MARK: Model
 	public static let schema = Schema(
-		Self.init ... "events",
+		Self.init..."events",
 		\.id * "id",
 		\.value.slug * "slug",
 		\.value.date * "date",
@@ -90,13 +90,13 @@ extension Event.Identified: Model {
 	)
 
 	public var valueSet: ValueSet<Self> {
-        [
+		[
 			\.value.slug == value.slug,
 			\.value.date == value.date,
 			\.show.id == show?.id,
 			\.value.timeZone == value.timeZone,
 			\.location.id == location.id,
-            \.venue.id == venue?.id
+			\.venue.id == venue?.id
 		]
 	}
 
@@ -104,13 +104,13 @@ extension Event.Identified: Model {
 		[
 			\.show.id: \.show!,
 			\.location.id: \.location,
-            \.venue.id: \.venue!
+			\.venue.id: \.venue!
 		]
 	}
-    
-    public static var defaultOrder: [Ordering<Self>] {
-        [.init(\.value.date, ascending: true)]
-    }
+
+	public static var defaultOrder: [Ordering<Self>] {
+		[.init(\.value.date, ascending: true)]
+	}
 }
 
 // MARK: -
@@ -119,7 +119,7 @@ private extension Event.Identified {
 		id: ID,
 		slug: String?,
 		date: Date,
-		timeZone: String,
+		timeZone: String?,
 		show: Show.Identified?,
 		location: Location.Identified,
 		venue: Venue.Identified?,

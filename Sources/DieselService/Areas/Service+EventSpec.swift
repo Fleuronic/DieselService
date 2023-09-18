@@ -5,26 +5,27 @@ import struct Diesel.Event
 extension Service: EventSpec where
 	Self: VenueSpec,
 	Self: AddressSpec,
-    Self: LocationSpec,
+	Self: LocationSpec,
 	API: EventSpec,
-    API.EventList == Void,
-    API.EventListResult == APIResult<[EventListFields]>,
+	API.EventList == Void,
+	API.EventListResult == APIResult<[EventListFields]>,
 	API.EventDetailsResult == APIResult<EventDetailsFields?>,
 	API.EventStorageResult == APIResult<[EventBaseFields]>,
 	Database: EventSpec,
-    Database.EventList == [EventBaseFields],
-    Database.EventListResult == DatabaseResult<[EventListFields]>,
+	Database.EventList == [EventBaseFields],
+	Database.EventListResult == DatabaseResult<[EventListFields]>,
 	Database.EventDetailsResult == DatabaseResult<EventDetailsFields?>,
-	Database.EventStorageResult == DatabaseResult<[Event.ID]> {
-    public func listEvents(for year: Int) -> AsyncStream<API.EventListResult>  {
-        .init { continuation in
+	Database.EventStorageResult == DatabaseResult<[Event.ID]>
+{
+	public func listEvents(for year: Int) -> AsyncStream<API.EventListResult> {
+		.init { continuation in
 			Task {
 				let localEvents = await database.listEvents(for: year).value.value
 				if !localEvents.isEmpty {
 					continuation.yield(.success(localEvents))
 				}
 
-                let remoteEvents = await api.listEvents(for: year).value
+				let remoteEvents = await api.listEvents(for: year).value
 				continuation.yield(remoteEvents)
 				continuation.finish()
 			}
@@ -47,18 +48,18 @@ extension Service: EventSpec where
 	}
 
 	public func storeEvents(from list: Void = (), for year: Int) async -> APIResult<[Event.ID]> {
-        await storeLocations().asyncFlatMap { _ in
-            await storeAddresses()
-        }.asyncFlatMap { _ in
+		await storeLocations().asyncFlatMap { _ in
+			await storeAddresses()
+		}.asyncFlatMap { _ in
 			await storeVenues()
-        }.asyncFlatMap { _ in
-            await api.storeEvents(from: list, for: year)
-        }.asyncMap { list in
-            await database.storeEvents(from: list, for: year).value
-        }
+		}.asyncFlatMap { _ in
+			await api.storeEvents(from: list, for: year)
+		}.asyncMap { list in
+			await database.storeEvents(from: list, for: year).value
+		}
 	}
-        
-    public func deleteEvents(for year: Int) async -> Database.EventDeletionResult {
-        await database.deleteEvents(for: year)
-    }
+
+	public func deleteEvents(for year: Int) async -> Database.EventDeletionResult {
+		await database.deleteEvents(for: year)
+	}
 }

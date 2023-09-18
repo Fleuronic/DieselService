@@ -1,10 +1,10 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
+import enum Catenary.IDCodingKeys
 import struct Diesel.Address
 import struct Diesel.Location
-import struct Schemata.Projection
-import enum Catenary.IDCodingKeys
 import protocol Identity.Identifiable
+import struct Schemata.Projection
 
 public struct AddressBaseFields {
 	public let id: Address.ID

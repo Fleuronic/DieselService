@@ -1,12 +1,12 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Schemata
 import PersistDB
+import Schemata
 
+import protocol Catena.Model
 import struct Diesel.Corps
 import struct Diesel.Location
 import struct Foundation.UUID
-import protocol Catena.Model
 import protocol Identity.Identifiable
 
 public struct IdentifiedCorps {
@@ -16,9 +16,14 @@ public struct IdentifiedCorps {
 }
 
 // MARK: -
+
 public extension Corps {
 	typealias ID = Identified.ID
 	typealias Identified = IdentifiedCorps
+
+	var matches: Predicate<Identified> {
+		\.value.name == name
+	}
 
 	func identified(
 		id: ID? = nil,
@@ -33,11 +38,12 @@ public extension Corps {
 
 	func matches(with location: Location.Identified) -> Predicate<Identified> {
 		\.value.name == name &&
-		\.location.id == location.id
+			\.location.id == location.id
 	}
 }
 
 // MARK: -
+
 public extension Corps.Identified {
 	init(
 		fields: CorpsBaseFields,
@@ -49,17 +55,27 @@ public extension Corps.Identified {
 			location: location
 		)
 	}
+
+	init(fields: CorpsNameLocationFields) {
+		self.init(
+			id: fields.id,
+			name: fields.name,
+			location: .init(fields: fields.location)
+		)
+	}
 }
 
 // MARK: -
+
 extension Corps.Identified: Identifiable {
 	public typealias RawIdentifier = UUID
 }
 
 extension Corps.Identified: Catena.Model {
 	// MARK: Model
+
 	public static let schema = Schema(
-		Self.init ... "corps",
+		Self.init..."corps",
 		\.id * "id",
 		\.value.name * "name",
 		\.location --> "location"
@@ -68,18 +84,19 @@ extension Corps.Identified: Catena.Model {
 	public var valueSet: ValueSet<Self> {
 		[
 			\.value.name == value.name,
-			\.location.id == location.id
+			\.location.id == location.id,
 		]
 	}
 
 	public static var relationships: Relationships {
 		[
-			\.location.id: \.location
+			\.location.id: \.location,
 		]
 	}
 }
 
 // MARK: -
+
 private extension Corps.Identified {
 	init(
 		id: ID,
@@ -94,11 +111,13 @@ private extension Corps.Identified {
 }
 
 // MARK: -
+
 public extension [Corps] {
 	var name: [String] { map(\.name) }
 }
 
 // MARK: -
+
 public extension [Corps.Identified] {
 	var id: [Corps.ID] { map(\.id) }
 	var value: [Corps] { map(\.value) }

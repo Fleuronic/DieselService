@@ -1,19 +1,19 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Schemata
 import PersistDB
+import Schemata
 
-import struct Diesel.Event
-import struct Diesel.Venue
-import struct Diesel.Address
-import struct Diesel.Location
-import struct Diesel.Slot
-import struct Diesel.Feature
-import struct Diesel.Corps
-import struct Diesel.Performance
-import struct Foundation.UUID
-import struct Foundation.TimeInterval
 import protocol Catena.Model
+import struct Diesel.Address
+import struct Diesel.Corps
+import struct Diesel.Event
+import struct Diesel.Feature
+import struct Diesel.Location
+import struct Diesel.Performance
+import struct Diesel.Slot
+import struct Diesel.Venue
+import struct Foundation.TimeInterval
+import struct Foundation.UUID
 import protocol Identity.Identifiable
 
 public struct IdentifiedSlot {
@@ -61,23 +61,23 @@ extension Slot.Identified: Identifiable {
 extension Slot.Identified: Catena.Model {
 	// MARK: Model
 	public static let schema = Schema(
-		Self.init ... "slots",
+		Self.init..."slots",
 		\.id * "id",
 		\.value.time * "time",
 		\.event --> "event",
 		\.feature -->? "feature",
 		\.performance -->? "performance"
 	)
-	
+
 	public var valueSet: ValueSet<Self> {
-        [
+		[
 			\.value.time == value.time,
 			\.event.id == event.id,
-            \.performance.id == performance?.id,
-            \.feature.id == feature?.id
+			\.performance.id == performance?.id,
+			\.feature.id == feature?.id
 		]
 	}
-	
+
 	public static var relationships: Relationships {
 		[
 			\.event.id: \.event,

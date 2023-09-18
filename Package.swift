@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "DieselService",
+	name: "DieselService",
 	platforms: [
 		.iOS(.v13),
 		.macOS(.v10_15),
@@ -10,26 +10,26 @@ let package = Package(
 		.watchOS(.v6)
 	],
 	products: [
-        .library(
-            name: "DieselService",
-            targets: ["DieselService"]
+		.library(
+			name: "DieselService",
+			targets: ["DieselService"]
 		)
-    ],
-    dependencies: [
+	],
+	dependencies: [
 		.package(url: "https://github.com/Fleuronic/Diesel", branch: "main"),
 		.package(url: "https://github.com/JohnSundell/Identity", from: "0.1.0"),
 		.package(url: "https://github.com/Fleuronic/Catenary", branch: "main"),
 		.package(url: "https://github.com/Fleuronic/Catenoid", branch: "main")
 	],
-    targets: [
-        .target(
-            name: "DieselService",
-            dependencies: [
+	targets: [
+		.target(
+			name: "DieselService",
+			dependencies: [
 				"Diesel",
 				"Identity",
 				"Catenary",
 				"Catenoid"
 			]
 		)
-    ]
+	]
 )

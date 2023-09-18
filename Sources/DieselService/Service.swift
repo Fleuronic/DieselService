@@ -20,6 +20,6 @@ public struct Service<API: Catenary.API, Database: Catenoid.Database> where Data
 
 // MARK: -
 public extension Service {
-    typealias APIResult<Resource> = API.Result<Resource>
+	typealias APIResult<Resource> = API.Result<Resource>
 	typealias DatabaseResult<Resource> = Database.Result<Resource>
 }

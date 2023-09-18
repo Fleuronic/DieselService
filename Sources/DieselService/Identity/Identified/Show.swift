@@ -1,11 +1,11 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Schemata
 import PersistDB
+import Schemata
 
+import protocol Catena.Model
 import struct Diesel.Show
 import struct Foundation.UUID
-import protocol Catena.Model
 import protocol Identity.Identifiable
 
 public struct IdentifiedShow {
@@ -38,7 +38,7 @@ extension Show.Identified: Identifiable {
 extension Show.Identified: Catena.Model {
 	// MARK: Model
 	public static let schema = Schema(
-		Self.init ... "shows",
+		Self.init..."shows",
 		\.id * "id",
 		\.value.name * "name"
 	)

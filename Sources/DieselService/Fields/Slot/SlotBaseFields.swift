@@ -2,8 +2,8 @@
 
 import struct Diesel.Slot
 import struct Foundation.TimeInterval
-import struct Schemata.Projection
 import protocol Identity.Identifiable
+import struct Schemata.Projection
 
 public struct SlotBaseFields {
 	public let id: Slot.ID

@@ -1,16 +1,16 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Schemata
 import PersistDB
+import Schemata
 
-import struct Diesel.Event
-import struct Diesel.Venue
-import struct Diesel.Corps
-import struct Diesel.Location
-import struct Diesel.Feature
-import struct Foundation.UUID
-import struct Foundation.TimeInterval
 import protocol Catena.Model
+import struct Diesel.Corps
+import struct Diesel.Event
+import struct Diesel.Feature
+import struct Diesel.Location
+import struct Diesel.Venue
+import struct Foundation.TimeInterval
+import struct Foundation.UUID
 import protocol Identity.Identifiable
 
 public struct IdentifiedFeature {
@@ -37,7 +37,7 @@ public extension Feature {
 
 	func matches(with corps: Corps.Identified?) -> Predicate<Identified> {
 		\.value.name == name &&
-		(corps?.id).map { \.corps.id == $0 } ?? !\.corps
+			(corps?.id).map { \.corps.id == $0 } ?? !\.corps
 	}
 }
 
@@ -49,7 +49,7 @@ extension Feature.Identified: Identifiable {
 extension Feature.Identified: Catena.Model {
 	// MARK: Model
 	public static let schema = Schema(
-		Self.init ... "features",
+		Self.init..."features",
 		\.id * "id",
 		\.value.name * "name",
 		\.corps -->? "corps"
@@ -58,7 +58,7 @@ extension Feature.Identified: Catena.Model {
 	public var valueSet: ValueSet<Self> {
 		[
 			\.value.name == value.name,
-            \.corps.id == corps?.id
+			\.corps.id == corps?.id
 		]
 	}
 
@@ -94,5 +94,5 @@ public extension [Feature] {
 public extension [Feature.Identified] {
 	var id: [Feature.ID] { map(\.id) }
 	var value: [Feature] { map(\.value) }
-    var corps: [Corps.Identified] { map(\.corps) }
+	var corps: [Corps.Identified] { map(\.corps) }
 }

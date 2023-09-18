@@ -1,12 +1,12 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Schemata
 import PersistDB
+import Schemata
 
+import protocol Catena.Model
 import struct Diesel.Address
 import struct Diesel.Location
 import struct Foundation.UUID
-import protocol Catena.Model
 import protocol Identity.Identifiable
 
 public struct IdentifiedAddress {
@@ -33,7 +33,7 @@ public extension Address {
 
 	var matches: Predicate<Identified> {
 		\.value.streetAddress == streetAddress &&
-		\.value.zipCode == zipCode
+			\.value.zipCode == zipCode
 	}
 }
 
@@ -60,7 +60,7 @@ extension Address.Identified: Identifiable {
 extension Address.Identified: Catena.Model {
 	// MARK: Model
 	public static let schema = Schema(
-		Self.init ... "addresses",
+		Self.init..."addresses",
 		\.id * "id",
 		\.value.streetAddress * "street_address",
 		\.value.zipCode * "zip_code",

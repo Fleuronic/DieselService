@@ -1,12 +1,12 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
 import struct Diesel.Event
-import struct Diesel.Show
 import struct Diesel.Location
-import struct Schemata.Projection
-import struct Foundation.Date
+import struct Diesel.Show
 import struct Foundation.Calendar
+import struct Foundation.Date
 import protocol Identity.Identifiable
+import struct Schemata.Projection
 
 public struct EventListFields {
 	public let id: Event.ID
