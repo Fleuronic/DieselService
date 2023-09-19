@@ -36,8 +36,7 @@ public extension Corps {
 	}
 
 	func matches(with location: Location.Identified) -> Predicate<Identified> {
-		\.value.name == name &&
-			\.location.id == location.id
+		\.value.name == name && \.location.id == location.id
 	}
 }
 
