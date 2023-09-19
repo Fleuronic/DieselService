@@ -36,8 +36,7 @@ public extension Feature {
 	}
 
 	func matches(with corps: Corps.Identified?) -> Predicate<Identified> {
-		\.value.name == name &&
-			(corps?.id).map { \.corps.id == $0 } ?? !\.corps
+		\.value.name == name && (corps?.id).map { \.corps.id == $0 } ?? !\.corps
 	}
 }
 

@@ -32,8 +32,7 @@ public extension Address {
 	}
 
 	var matches: Predicate<Identified> {
-		\.value.streetAddress == streetAddress &&
-			\.value.zipCode == zipCode
+		\.value.streetAddress == streetAddress && \.value.zipCode == zipCode
 	}
 }
 
