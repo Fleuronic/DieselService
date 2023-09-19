@@ -42,7 +42,7 @@
       "location" : "https://github.com/Fleuronic/Diesel",
       "state" : {
         "branch" : "main",
-        "revision" : "1ea935ca10ec4c82b5705691cb7c834f57ed0f54"
+        "revision" : "2f96b00b12fcdbcd6927c65dce975c680d0d8746"
       }
     },
     {
@@ -87,7 +87,7 @@
       "location" : "https://github.com/Fleuronic/Schemata",
       "state" : {
         "branch" : "master",
-        "revision" : "103895ce834495061e9d059ea429091842527e96"
+        "revision" : "15a11bd95cd8e3f4459d7d3531c6b89bfbed5dc9"
       }
     }
   ],
