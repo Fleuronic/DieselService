@@ -23,10 +23,10 @@ extension EventListFields: Decodable {
 		let container = try decoder.container(keyedBy: Model.CodingKeys.self)
 		id = try container.decode(Event.ID.self, forKey: .id)
 		date = try container.decode(Date.self, forKey: .date)
-
+		
 		let showContainer = try? container.nestedContainer(keyedBy: Show.CodingKeys.self, forKey: .show)
 		showName = try showContainer?.decode(String.self, forKey: .name)
-
+		
 		let locationContainer = try container.nestedContainer(keyedBy: Location.CodingKeys.self, forKey: .location)
 		city = try locationContainer.decode(String.self, forKey: .city)
 		state = try locationContainer.decode(String.self, forKey: .state)

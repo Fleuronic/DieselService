@@ -19,7 +19,7 @@ extension CorpsBaseFields: Decodable {
 		let container = try decoder.container(keyedBy: Model.CodingKeys.self)
 		id = try container.decode(Corps.ID.self, forKey: .id)
 		name = try container.decode(String.self, forKey: .name)
-
+		
 		let locationContainer = try container.nestedContainer(keyedBy: IDCodingKeys.self, forKey: .location)
 		locationID = try locationContainer.decode(Location.ID.self, forKey: .id)
 	}

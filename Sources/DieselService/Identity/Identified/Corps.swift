@@ -69,7 +69,6 @@ extension Corps.Identified: Identifiable {
 
 extension Corps.Identified: Catena.Model {
 	// MARK: Model
-
 	public static let schema = Schema(
 		Self.init ... "corps",
 		\.id * "id",
@@ -100,7 +99,7 @@ private extension Corps.Identified {
 	) {
 		self.id = id
 		self.location = location
-
+		
 		value = .init(name: name)
 	}
 }

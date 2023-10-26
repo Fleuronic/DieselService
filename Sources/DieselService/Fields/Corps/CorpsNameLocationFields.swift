@@ -45,7 +45,7 @@ private extension CorpsNameLocationFields {
 	) {
 		self.id = id
 		self.name = name
-
+		
 		location = .init(
 			id: locationID,
 			city: city,

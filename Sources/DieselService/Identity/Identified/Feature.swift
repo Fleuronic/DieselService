@@ -77,7 +77,7 @@ private extension Feature.Identified {
 	) {
 		self.id = id
 		self.corps = corps
-
+		
 		value = .init(
 			name: name
 		)

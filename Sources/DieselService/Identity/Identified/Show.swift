@@ -57,7 +57,7 @@ private extension Show.Identified {
 		name: String
 	) {
 		self.id = id
-
+		
 		value = .init(
 			name: name
 		)

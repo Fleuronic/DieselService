@@ -5,8 +5,7 @@ extension Service: VenueSpec where
 	API.VenueList == Void,
 	API.VenueStorageResult == APIResult<[VenueBaseFields]>,
 	Database: VenueSpec,
-	Database.VenueList == [VenueBaseFields]
-{
+	Database.VenueList == [VenueBaseFields] {
 	public func storeVenues(from list: Void = ()) async -> APIResult<Database.VenueStorageResult> {
 		await api.storeVenues(from: list).asyncMap(database.storeVenues)
 	}

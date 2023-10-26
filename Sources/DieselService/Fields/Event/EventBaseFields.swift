@@ -28,13 +28,13 @@ extension EventBaseFields: Decodable {
 		slug = try container.decodeIfPresent(String.self, forKey: .slug)
 		date = try container.decode(Date.self, forKey: .date)
 		timeZone = try container.decode(String.self, forKey: .timeZone)
-
+		
 		let showContainer = try? container.nestedContainer(keyedBy: IDCodingKeys.self, forKey: .show)
 		showID = try showContainer?.decode(Show.ID.self, forKey: .id)
-
+		
 		let locationContainer = try container.nestedContainer(keyedBy: IDCodingKeys.self, forKey: .location)
 		locationID = try locationContainer.decode(Location.ID.self, forKey: .id)
-
+		
 		let venueContainer = try? container.nestedContainer(keyedBy: IDCodingKeys.self, forKey: .venue)
 		venueID = try venueContainer?.decode(Venue.ID.self, forKey: .id)
 	}

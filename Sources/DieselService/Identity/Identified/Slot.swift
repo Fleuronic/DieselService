@@ -100,7 +100,7 @@ private extension Slot.Identified {
 		self.event = event
 		self.feature = feature
 		self.performance = performance
-
+		
 		value = .init(
 			time: time
 		)

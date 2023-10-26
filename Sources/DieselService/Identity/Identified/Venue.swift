@@ -91,7 +91,7 @@ private extension Venue.Identified {
 	) {
 		self.id = id
 		self.address = address
-
+		
 		value = .init(
 			name: name,
 			host: host

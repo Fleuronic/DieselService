@@ -32,7 +32,7 @@ extension VenueBaseFields: Decodable {
 		id = try container.decode(Venue.ID.self, forKey: .id)
 		name = try container.decode(String.self, forKey: .name)
 		host = try container.decodeIfPresent(String.self, forKey: .host)
-
+		
 		let addressContainer = try container.nestedContainer(keyedBy: IDCodingKeys.self, forKey: .address)
 		addressID = try addressContainer.decode(Address.ID.self, forKey: .id)
 	}

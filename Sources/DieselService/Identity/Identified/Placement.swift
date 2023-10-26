@@ -72,7 +72,7 @@ private extension Placement.Identified {
 	) {
 		self.id = id
 		self.division = division
-
+		
 		value = .init(
 			rank: rank,
 			score: score

@@ -5,8 +5,7 @@ extension Service: LocationSpec where
 	API.LocationList == Void,
 	API.LocationStorageResult == APIResult<[LocationBaseFields]>,
 	Database: LocationSpec,
-	Database.LocationList == [LocationBaseFields]
-{
+	Database.LocationList == [LocationBaseFields] {
 	public func storeLocations(from list: Void = ()) async -> APIResult<Database.LocationStorageResult> {
 		await api.storeLocations(from: list).asyncMap(database.storeLocations)
 	}

@@ -91,7 +91,7 @@ private extension Address.Identified {
 	) {
 		self.id = id
 		self.location = location
-
+		
 		value = .init(
 			streetAddress: streetAddress,
 			zipCode: zipCode

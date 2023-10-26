@@ -26,8 +26,7 @@ public extension Location {
 	}
 
 	var matches: Predicate<Identified> {
-		\.value.city == city &&
-			\.value.state == state
+		\.value.city == city && \.value.state == state
 	}
 }
 
@@ -72,7 +71,7 @@ private extension Location.Identified {
 		state: String
 	) {
 		self.id = id
-
+		
 		value = .init(
 			city: city,
 			state: state

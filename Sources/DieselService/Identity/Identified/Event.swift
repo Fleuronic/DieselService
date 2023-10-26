@@ -130,7 +130,7 @@ private extension Event.Identified {
 		self.location = location
 		self.venue = venue
 		self.slots = slots
-
+		
 		value = .init(
 			slug: slug,
 			date: date,

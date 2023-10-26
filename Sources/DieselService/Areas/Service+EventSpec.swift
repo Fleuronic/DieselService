@@ -24,7 +24,7 @@ extension Service: EventSpec where
 				if !localEvents.isEmpty {
 					continuation.yield(.success(localEvents))
 				}
-
+				
 				let remoteEvents = await api.listEvents(for: year).value
 				continuation.yield(remoteEvents)
 				continuation.finish()
@@ -39,7 +39,7 @@ extension Service: EventSpec where
 				if let localDetails {
 					continuation.yield(.success(localDetails))
 				}
-
+				
 				let remoteDetails = await api.fetchEventDetails(with: id).value
 				continuation.yield(remoteDetails)
 				continuation.finish()

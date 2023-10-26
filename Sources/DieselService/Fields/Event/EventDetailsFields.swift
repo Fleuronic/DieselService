@@ -29,17 +29,17 @@ extension EventDetailsFields: Decodable {
 		id = try container.decode(Event.ID.self, forKey: .id)
 		date = try container.decode(Date.self, forKey: .date)
 		timeZone = try container.decode(String.self, forKey: .timeZone)
-
+		
 		let showContainer = try? container.nestedContainer(keyedBy: Show.CodingKeys.self, forKey: .venue)
 		showName = try showContainer?.decode(String.self, forKey: .name)
-
+		
 		let locationContainer = try container.nestedContainer(keyedBy: Location.CodingKeys.self, forKey: .location)
 		city = try locationContainer.decode(String.self, forKey: .city)
 		state = try locationContainer.decode(String.self, forKey: .state)
-
+		
 		let venueContainer = try? container.nestedContainer(keyedBy: Venue.CodingKeys.self, forKey: .venue)
 		venueName = try venueContainer?.decode(String.self, forKey: .name)
-
+		
 		let addressContainer = try venueContainer?.nestedContainer(keyedBy: Address.CodingKeys.self, forKey: .address)
 		venueStreetAddress = try addressContainer?.decode(String.self, forKey: .streetAddress)
 		venueZIPCode = try addressContainer?.decode(String.self, forKey: .zipCode)

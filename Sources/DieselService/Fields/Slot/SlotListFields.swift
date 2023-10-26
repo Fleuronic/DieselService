@@ -30,25 +30,25 @@ extension SlotListFields: Decodable {
 		let container = try decoder.container(keyedBy: Model.CodingKeys.self)
 		id = try container.decode(Slot.ID.self, forKey: .id)
 		time = try container.decodeIfPresent(TimeInterval.self, forKey: .time)
-
+		
 		let featureContainer = try? container.nestedContainer(keyedBy: Feature.CodingKeys.self, forKey: .feature)
 		featureName = try featureContainer?.decode(String.self, forKey: .name)
-
+		
 		let featuredCorpsContainer = try? featureContainer?.nestedContainer(keyedBy: Corps.CodingKeys.self, forKey: .corps)
 		featuredCorpsName = try featuredCorpsContainer?.decode(String.self, forKey: .name)
-
+		
 		let performanceContainer = try? container.nestedContainer(keyedBy: Performance.CodingKeys.self, forKey: .performance)
 		let performingCorpsContainer = try performanceContainer?.nestedContainer(keyedBy: Corps.CodingKeys.self, forKey: .corps)
 		performingCorpsName = try performingCorpsContainer?.decode(String.self, forKey: .name)
-
+		
 		let performingCorpsLocationContainer = try performingCorpsContainer?.nestedContainer(keyedBy: Location.CodingKeys.self, forKey: .location)
 		performingCorpsCity = try performingCorpsLocationContainer?.decode(String.self, forKey: .city)
 		performingCorpsState = try performingCorpsLocationContainer?.decode(String.self, forKey: .state)
-
+		
 		let performancePlacementContainer = try? performanceContainer?.nestedContainer(keyedBy: Placement.CodingKeys.self, forKey: .placement)
 		performancePlacementRank = try performancePlacementContainer?.decode(Int.self, forKey: .rank)
 		performancePlacementScore = try performancePlacementContainer?.decode(Double.self, forKey: .score)
-
+		
 		let divisionContainer = try performancePlacementContainer?.nestedContainer(keyedBy: Division.CodingKeys.self, forKey: .division)
 		performancePlacementDivisionName = try divisionContainer?.decode(String.self, forKey: .name)
 	}

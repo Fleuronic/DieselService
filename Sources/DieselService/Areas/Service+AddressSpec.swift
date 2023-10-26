@@ -5,8 +5,7 @@ extension Service: AddressSpec where
 	API.AddressList == Void,
 	API.AddressStorageResult == APIResult<[AddressBaseFields]>,
 	Database: AddressSpec,
-	Database.AddressList == [AddressBaseFields]
-{
+	Database.AddressList == [AddressBaseFields] {
 	public func storeAddresses(from list: Void = ()) async -> APIResult<Database.AddressStorageResult> {
 		await api.storeAddresses(from: list).asyncMap(database.storeAddresses)
 	}

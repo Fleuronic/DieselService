@@ -21,7 +21,7 @@ extension AddressBaseFields: Decodable {
 		id = try container.decode(Address.ID.self, forKey: .id)
 		streetAddress = try container.decode(String.self, forKey: .streetAddress)
 		zipCode = try container.decode(String.self, forKey: .zipCode)
-
+		
 		let locationContainer = try container.nestedContainer(keyedBy: IDCodingKeys.self, forKey: .location)
 		locationID = try locationContainer.decode(Location.ID.self, forKey: .id)
 	}

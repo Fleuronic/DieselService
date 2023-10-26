@@ -79,7 +79,7 @@ private extension Performance.Identified {
 		self.id = id
 		self.corps = corps
 		self.placement = placement
-
+		
 		value = .init()
 	}
 }
