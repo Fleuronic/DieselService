@@ -31,6 +31,14 @@ public extension Show {
 }
 
 // MARK: -
+public extension Show.Identified {
+	init(fields: ShowBaseFields) {
+		id = fields.id
+		value = .init(name: fields.name)
+	}
+}
+
+// MARK: -
 extension Show.Identified: Identifiable {
 	public typealias RawIdentifier = UUID
 }
