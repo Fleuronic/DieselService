@@ -47,6 +47,10 @@ public extension Event {
 	static func `is`(in events: [Identified]) -> Predicate<Identified> {
 		events.compactMap(\.value.slug).contains(\.value.slug)
 	}
+
+	static func takesPlace(in year: Int) -> Predicate<Identified> {
+		\.value.date < .init() && \.value.date > Date(timeIntervalSince1970: 0)
+	}
 }
 
 // MARK: -
