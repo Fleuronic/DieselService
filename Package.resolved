@@ -42,7 +42,7 @@
       "location" : "https://github.com/Fleuronic/Diesel",
       "state" : {
         "branch" : "main",
-        "revision" : "0ed03d382ab9ea5fb5894177971792c50144403d"
+        "revision" : "a78523511f8e40a30642ba47170f7738ba7a882a"
       }
     },
     {
@@ -78,7 +78,7 @@
       "location" : "https://github.com/Fleuronic/PersistDB",
       "state" : {
         "branch" : "master",
-        "revision" : "3243c0e81e0b627707cfcebfa5b3001b83d0b537"
+        "revision" : "871e8dd86d0932ff9803834e26ab186ac6ca4653"
       }
     },
     {
