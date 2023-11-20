@@ -2,11 +2,7 @@
 
 import struct Diesel.Event
 
-extension Service: SlotSpec where
-	API: SlotSpec,
-	API.SlotListResult == APIResult<[SlotListFields]>,
-	Database: SlotSpec,
-	Database.SlotListResult == DatabaseResult<[SlotListFields]> {
+extension Service: SlotSpec where API: SlotSpec, Database: SlotSpec {
 	public func listSlots(comprisingEventWith id: Event.ID) -> AsyncStream<API.SlotListResult> {
 		.init { continuation in
 			Task {

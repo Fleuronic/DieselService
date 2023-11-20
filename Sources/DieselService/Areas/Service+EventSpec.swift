@@ -8,13 +8,13 @@ extension Service: EventSpec where
 	Self: LocationSpec,
 	API: EventSpec,
 	API.EventList == Void,
-	API.EventListResult == APIResult<[EventListFields]>,
-	API.EventDetailsResult == APIResult<EventDetailsFields?>,
+	API.EventListResult == APIResult<[API.EventListFields]>,
+	API.EventDetailsResult == APIResult<API.EventDetailsFields?>,
 	API.EventStorageResult == APIResult<[EventBaseFields]>,
 	Database: EventSpec,
 	Database.EventList == [EventBaseFields],
-	Database.EventListResult == DatabaseResult<[EventListFields]>,
-	Database.EventDetailsResult == DatabaseResult<EventDetailsFields?>,
+	Database.EventListResult == DatabaseResult<[API.EventListFields]>,
+	Database.EventDetailsResult == DatabaseResult<API.EventDetailsFields?>,
 	Database.EventStorageResult == DatabaseResult<[Event.ID]>
 {
 	public func listEvents(for year: Int) -> AsyncStream<API.EventListResult> {
