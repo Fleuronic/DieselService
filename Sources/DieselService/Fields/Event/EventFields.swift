@@ -1,10 +1,14 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import protocol Catena.Fields
 import struct Diesel.Event
+import struct Catena.IDFields
+import protocol Catena.Fields
 import protocol Schemata.ModelProjection
 
 public protocol EventFields: Fields where Model == Event.Identified {}
+
+// MARK: -
+extension IDFields<Event.Identified>: EventFields {}
 
 // MARK: -
 public extension Event.Identified {

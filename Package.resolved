@@ -6,7 +6,7 @@
       "location" : "https://github.com/Fleuronic/Catena",
       "state" : {
         "branch" : "main",
-        "revision" : "ef685764ba13c9da00c6bb0a0089babaa7f9ecd2"
+        "revision" : "648a1e3dbea100e876a6f5802a5de9fe5b808a7f"
       }
     },
     {
@@ -15,7 +15,7 @@
       "location" : "https://github.com/Fleuronic/Catenary",
       "state" : {
         "branch" : "main",
-        "revision" : "80e8f3800b0027ee1164f79eac6f2ed903542b61"
+        "revision" : "b9993d7249b1d7105e45be7a53a8f99e5b172d2a"
       }
     },
     {
@@ -42,7 +42,7 @@
       "location" : "https://github.com/Fleuronic/Diesel",
       "state" : {
         "branch" : "main",
-        "revision" : "2f96b00b12fcdbcd6927c65dce975c680d0d8746"
+        "revision" : "0ed03d382ab9ea5fb5894177971792c50144403d"
       }
     },
     {
@@ -64,12 +64,21 @@
       }
     },
     {
+      "identity" : "initmacro",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LeonardoCardoso/InitMacro.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "6b1488c4b540c70e1952dd2ece985dbe266e8964"
+      }
+    },
+    {
       "identity" : "persistdb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Fleuronic/PersistDB",
       "state" : {
         "branch" : "master",
-        "revision" : "c5938f5614d937bd342a44a6960108fa754abac8"
+        "revision" : "3243c0e81e0b627707cfcebfa5b3001b83d0b537"
       }
     },
     {
@@ -87,7 +96,25 @@
       "location" : "https://github.com/Fleuronic/Schemata",
       "state" : {
         "branch" : "master",
-        "revision" : "15a11bd95cd8e3f4459d7d3531c6b89bfbed5dc9"
+        "revision" : "5738eee8916ef44f23feafe51b574f83a62f7ee3"
+      }
+    },
+    {
+      "identity" : "sociableweaver",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/NicholasBellucci/SociableWeaver.git",
+      "state" : {
+        "revision" : "dd8368fcf1f8fef5d672ea64775dc6f7b02d7a92",
+        "version" : "0.1.12"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-syntax",
+      "state" : {
+        "revision" : "74203046135342e4a4a627476dd6caf8b28fe11b",
+        "version" : "509.0.0"
       }
     }
   ],

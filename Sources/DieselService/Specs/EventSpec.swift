@@ -4,6 +4,8 @@ import struct Diesel.Event
 
 public protocol EventSpec {
 	associatedtype EventList
+	associatedtype EventListFields: EventFields
+	associatedtype EventDetailsFields: EventFields
 	associatedtype EventListResult
 	associatedtype EventDetailsResult
 	associatedtype EventStorageResult

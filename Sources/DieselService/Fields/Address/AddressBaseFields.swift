@@ -1,30 +1,16 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import enum Catenary.IDCodingKeys
 import struct Diesel.Address
 import struct Diesel.Location
-import protocol Identity.Identifiable
+import struct Catena.IDFields
 import struct Schemata.Projection
+import protocol Identity.Identifiable
 
 public struct AddressBaseFields {
 	public let id: Address.ID
 	public let streetAddress: String
 	public let zipCode: String
-	public let locationID: Location.ID
-}
-
-// MARK: -
-extension AddressBaseFields: Decodable {
-	// MARK: Decodable
-	public init(from decoder: Decoder) throws {
-		let container = try decoder.container(keyedBy: Model.CodingKeys.self)
-		id = try container.decode(Address.ID.self, forKey: .id)
-		streetAddress = try container.decode(String.self, forKey: .streetAddress)
-		zipCode = try container.decode(String.self, forKey: .zipCode)
-		
-		let locationContainer = try container.nestedContainer(keyedBy: IDCodingKeys.self, forKey: .location)
-		locationID = try locationContainer.decode(Location.ID.self, forKey: .id)
-	}
+	public let location: IDFields<Location.Identified>
 }
 
 extension AddressBaseFields: AddressFields {
@@ -36,4 +22,20 @@ extension AddressBaseFields: AddressFields {
 		\.value.zipCode,
 		\.location.id
 	)
+}
+
+// MARK: -
+private extension AddressBaseFields {
+	init(
+		id: Address.ID,
+		streetAddress: String,
+		zipCode: String,
+		locationID: Location.ID
+	) {
+		self.id = id
+		self.streetAddress = streetAddress
+		self.zipCode = zipCode
+
+		location = .init(id: locationID)
+	}
 }

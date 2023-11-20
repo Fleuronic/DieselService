@@ -11,6 +11,8 @@ import struct Diesel.Show
 import struct Diesel.Slot
 import struct Diesel.Venue
 import struct Foundation.Date
+import struct Foundation.DateComponents
+import struct Foundation.Calendar
 import struct Foundation.UUID
 import protocol Identity.Identifiable
 
@@ -49,7 +51,10 @@ public extension Event {
 	}
 
 	static func takesPlace(in year: Int) -> Predicate<Identified> {
-		\.value.date < .init() && \.value.date > Date(timeIntervalSince1970: 0)
+		let calendar = Calendar.current
+		let startOfYear = DateComponents(calendar: calendar, year: year).date!
+		let endOfYear = calendar.date(byAdding: .year, value: 1, to: startOfYear)!
+		return \.value.date > startOfYear && \.value.date < endOfYear
 	}
 }
 
