@@ -12,7 +12,7 @@ import struct Diesel.Location
 import struct Diesel.Performance
 import struct Diesel.Slot
 import struct Diesel.Venue
-import struct Foundation.TimeInterval
+import struct Foundation.Date
 import struct Foundation.UUID
 import protocol Identity.Identifiable
 
@@ -91,7 +91,7 @@ extension Slot.Identified: Catena.Model {
 private extension Slot.Identified {
 	init(
 		id: ID,
-		time: TimeInterval?,
+		time: Date?,
 		event: Event.Identified,
 		feature: Feature.Identified?,
 		performance: Performance.Identified?
@@ -109,7 +109,7 @@ private extension Slot.Identified {
 
 // MARK: -
 public extension [Slot] {
-	var time: [TimeInterval?] { map(\.time) }
+	var time: [Date?] { map(\.time) }
 }
 
 // MARK: -

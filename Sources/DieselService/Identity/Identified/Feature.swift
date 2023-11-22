@@ -9,7 +9,6 @@ import struct Diesel.Event
 import struct Diesel.Feature
 import struct Diesel.Location
 import struct Diesel.Venue
-import struct Foundation.TimeInterval
 import struct Foundation.UUID
 import protocol Identity.Identifiable
 

@@ -14,6 +14,7 @@ public struct EventBaseFields {
 	public let show: IDFields<Show.Identified>?
 	public let slug: String?
 	public let date: Date
+	public let startTime: Date?
 	public let timeZone: String?
 	public let location: IDFields<Location.Identified>
 	public let venue: IDFields<Venue.Identified>?
@@ -28,6 +29,7 @@ extension EventBaseFields: EventFields {
 		\.show.id,
 		\.value.slug,
 		\.value.date,
+		\.value.startTime,
 		\.value.timeZone,
 		\.location.id,
 		\.venue.id
@@ -41,6 +43,7 @@ private extension EventBaseFields {
 		showID: Show.ID?,
 		slug: String?,
 		date: Date,
+		startTime: Date?,
 		timeZone: String?,
 		locationID: Location.ID,
 		venueID: Venue.ID?
@@ -48,6 +51,7 @@ private extension EventBaseFields {
 		self.id = id
 		self.slug = slug
 		self.date = date
+		self.startTime = startTime
 		self.timeZone = timeZone
 
 		show = showID.map { .init(id: $0) }

@@ -70,6 +70,7 @@ public extension Event.Identified {
 			id: fields.id,
 			slug: fields.slug,
 			date: fields.date,
+			startTime: fields.startTime,
 			timeZone: fields.timeZone,
 			show: show,
 			location: location,
@@ -91,6 +92,7 @@ extension Event.Identified: Model {
 		\.id * "id",
 		\.value.slug * "slug",
 		\.value.date * "date",
+		\.value.startTime * "start_time",
 		\.value.timeZone * "time_zone",
 		\.show -->? "show",
 		\.location --> "location",
@@ -102,8 +104,9 @@ extension Event.Identified: Model {
 		[
 			\.value.slug == value.slug,
 			\.value.date == value.date,
-			\.show.id == show?.id,
+			\.value.startTime == value.startTime,
 			\.value.timeZone == value.timeZone,
+			\.show.id == show?.id,
 			\.location.id == location.id,
 			\.venue.id == venue?.id
 		]
@@ -128,6 +131,7 @@ private extension Event.Identified {
 		id: ID,
 		slug: String?,
 		date: Date,
+		startTime: Date?,
 		timeZone: String?,
 		show: Show.Identified?,
 		location: Location.Identified,
@@ -143,6 +147,7 @@ private extension Event.Identified {
 		value = .init(
 			slug: slug,
 			date: date,
+			startTime: startTime,
 			timeZone: timeZone
 		)
 	}
