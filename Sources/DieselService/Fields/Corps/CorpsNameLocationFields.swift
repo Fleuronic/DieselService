@@ -1,24 +1,16 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
+import InitMacro
+
 import struct Diesel.Corps
 import struct Diesel.Location
 import protocol Identity.Identifiable
 import struct Schemata.Projection
 
-public struct CorpsNameLocationFields {
+@Init public struct CorpsNameLocationFields {
 	public let id: Corps.ID
 	public let name: String
 	public let location: LocationBaseFields
-
-	public init(
-		id: Corps.ID,
-		name: String,
-		location: LocationBaseFields
-	) {
-		self.id = id
-		self.name = name
-		self.location = location
-	}
 }
 
 // MARK: -

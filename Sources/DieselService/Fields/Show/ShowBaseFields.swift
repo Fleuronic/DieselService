@@ -1,20 +1,14 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import struct Diesel.Show
-import protocol Identity.Identifiable
-import struct Schemata.Projection
+import InitMacro
 
-public struct ShowBaseFields {
+import struct Diesel.Show
+import struct Schemata.Projection
+import protocol Identity.Identifiable
+
+@Init public struct ShowBaseFields {
 	public let id: Show.ID
 	public let name: String
-
-	public init(
-		id: Show.ID,
-		name: String
-	) {
-		self.id = id
-		self.name = name
-	}
 }
 
 // MARK: -
