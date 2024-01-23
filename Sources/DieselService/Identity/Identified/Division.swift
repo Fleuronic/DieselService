@@ -44,9 +44,7 @@ extension Division.Identified: Catena.Model {
 	)
 
 	public var valueSet: ValueSet<Self> {
-		[
-			\.value.name == value.name
-		]
+		[\.value.name == value.name]
 	}
 }
 
@@ -58,9 +56,7 @@ private extension Division.Identified {
 	) {
 		self.id = id
 		
-		value = .init(
-			name: name
-		)
+		value = .init(name: name)
 	}
 }
 

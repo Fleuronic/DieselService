@@ -3,7 +3,6 @@
 import PersistDB
 import Schemata
 
-import protocol Catena.Model
 import struct Diesel.Address
 import struct Diesel.Corps
 import struct Diesel.Event
@@ -14,6 +13,7 @@ import struct Diesel.Slot
 import struct Diesel.Venue
 import struct Foundation.Date
 import struct Foundation.UUID
+import protocol Catena.Model
 import protocol Identity.Identifiable
 
 public struct IdentifiedSlot {
@@ -101,9 +101,7 @@ private extension Slot.Identified {
 		self.feature = feature
 		self.performance = performance
 		
-		value = .init(
-			time: time
-		)
+		value = .init(time: time)
 	}
 }
 

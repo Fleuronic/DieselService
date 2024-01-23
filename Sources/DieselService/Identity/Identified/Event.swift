@@ -1,9 +1,8 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import PersistDB
 import Schemata
+import PersistDB
 
-import protocol Catena.Model
 import struct Diesel.Address
 import struct Diesel.Event
 import struct Diesel.Location
@@ -14,6 +13,7 @@ import struct Foundation.Date
 import struct Foundation.DateComponents
 import struct Foundation.Calendar
 import struct Foundation.UUID
+import protocol Catena.Model
 import protocol Identity.Identifiable
 
 public struct IdentifiedEvent {

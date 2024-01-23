@@ -1,12 +1,12 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import PersistDB
 import Schemata
+import PersistDB
 
-import protocol Catena.Model
 import struct Diesel.Address
 import struct Diesel.Location
 import struct Foundation.UUID
+import protocol Catena.Model
 import protocol Identity.Identifiable
 
 public struct IdentifiedAddress {
@@ -75,9 +75,7 @@ extension Address.Identified: Catena.Model {
 	}
 
 	public static var relationships: Relationships {
-		[
-			\.location.id: \.location
-		]
+		[\.location.id: \.location]
 	}
 }
 

@@ -3,10 +3,10 @@
 import Schemata
 import PersistDB
 
-import protocol Catena.Model
 import struct Diesel.Corps
 import struct Diesel.Location
 import struct Foundation.UUID
+import protocol Catena.Model
 import protocol Identity.Identifiable
 
 public struct IdentifiedCorps {
@@ -50,14 +50,6 @@ public extension Corps.Identified {
 			id: fields.id,
 			name: fields.name,
 			location: location
-		)
-	}
-
-	init(fields: CorpsNameLocationFields) {
-		self.init(
-			id: fields.id,
-			name: fields.name,
-			location: .init(fields: fields.location)
 		)
 	}
 }

@@ -56,9 +56,7 @@ extension Placement.Identified: Catena.Model {
 	}
 
 	public static var relationships: Relationships {
-		[
-			\.division.id: \.division
-		]
+		[\.division.id: \.division]
 	}
 }
 
