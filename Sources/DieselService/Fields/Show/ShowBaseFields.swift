@@ -1,12 +1,10 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import InitMacro
-
 import struct Diesel.Show
 import struct Schemata.Projection
 import protocol Identity.Identifiable
 
-@Init public struct ShowBaseFields {
+public struct ShowBaseFields {
 	public let id: Show.ID
 	public let name: String
 }

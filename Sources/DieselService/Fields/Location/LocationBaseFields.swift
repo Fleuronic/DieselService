@@ -3,10 +3,10 @@
 import InitMacro
 
 import struct Diesel.Location
-import protocol Identity.Identifiable
 import struct Schemata.Projection
+import protocol Identity.Identifiable
 
-@Init public struct LocationBaseFields {
+public struct LocationBaseFields {
 	public let id: Location.ID
 	public let city: String
 	public let state: String

@@ -3,8 +3,8 @@
 import struct Diesel.Corps
 import struct Diesel.Location
 import struct Catena.IDFields
-import protocol Identity.Identifiable
 import struct Schemata.Projection
+import protocol Identity.Identifiable
 
 public struct CorpsBaseFields {
 	public let id: Corps.ID
