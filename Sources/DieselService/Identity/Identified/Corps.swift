@@ -42,14 +42,17 @@ public extension Corps {
 
 // MARK: -
 public extension Corps.Identified {
-	init(
-		fields: CorpsBaseFields,
-		location: Location.Identified
-	) {
+	init(fields: CorpsNameLocationFields) {
 		self.init(
 			id: fields.id,
 			name: fields.name,
-			location: location
+			location: .init(
+				id: fields.locationID,
+				value: .init(
+					city: fields.city,
+					state: fields.state
+				)
+			)
 		)
 	}
 }
