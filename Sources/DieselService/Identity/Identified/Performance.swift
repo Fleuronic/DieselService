@@ -3,7 +3,6 @@
 import PersistDB
 import Schemata
 
-import protocol Catena.Model
 import struct Diesel.Corps
 import struct Diesel.Event
 import struct Diesel.Location
@@ -11,6 +10,7 @@ import struct Diesel.Performance
 import struct Diesel.Placement
 import struct Diesel.Venue
 import struct Foundation.UUID
+import protocol Catena.Model
 import protocol Identity.Identifiable
 
 public struct IdentifiedPerformance {
