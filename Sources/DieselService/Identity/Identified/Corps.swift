@@ -46,13 +46,7 @@ public extension Corps.Identified {
 		self.init(
 			id: fields.id,
 			name: fields.name,
-			location: .init(
-				id: fields.locationID,
-				value: .init(
-					city: fields.city,
-					state: fields.state
-				)
-			)
+			location: .init(fields: fields.location)
 		)
 	}
 }

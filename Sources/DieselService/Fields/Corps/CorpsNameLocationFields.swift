@@ -2,15 +2,14 @@
 
 import struct Diesel.Corps
 import struct Diesel.Location
-import protocol Identity.Identifiable
 import struct Schemata.Projection
+import protocol Identity.Identifiable
 
 public struct CorpsNameLocationFields {
 	public let id: Corps.ID
-	public let name: String
-	public let locationID: Location.ID
-	public let city: String
-	public let state: String
+	
+	let name: String
+	let location: LocationBaseFields
 }
 
 // MARK: -
@@ -24,4 +23,24 @@ extension CorpsNameLocationFields: CorpsFields {
 		\.location.value.city,
 		\.location.value.state
 	)
+}
+
+// MARK: -
+private extension CorpsNameLocationFields {
+	init(
+		id: Corps.ID,
+		name: String,
+		locationID: Location.ID,
+		city: String,
+		state: String
+	) {
+		self.id = id
+		self.name = name
+		
+		location = .init(
+			id: locationID,
+			city: city,
+			state: state
+		)
+	}
 }
