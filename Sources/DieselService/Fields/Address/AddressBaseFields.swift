@@ -6,16 +6,18 @@ import struct Catena.IDFields
 import struct Schemata.Projection
 import protocol Identity.Identifiable
 
-struct AddressBaseFields {
-	let id: Address.ID
+public struct AddressBaseFields {
+	public let id: Address.ID
+
 	let streetAddress: String
 	let zipCode: String
 	let location: IDFields<Location.Identified>
 }
 
+// MARK: -
 extension AddressBaseFields: AddressFields {
 	// MARK: ModelProjection
-	static let projection = Projection<Address.Identified, Self>(
+	public static let projection = Projection<Address.Identified, Self>(
 		Self.init,
 		\.id,
 		\.value.streetAddress,

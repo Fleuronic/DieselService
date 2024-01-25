@@ -4,8 +4,9 @@ import struct Diesel.Location
 import struct Schemata.Projection
 import protocol Identity.Identifiable
 
-struct LocationBaseFields {
-	let id: Location.ID
+public struct LocationBaseFields {
+	public let id: Location.ID
+
 	let city: String
 	let state: String
 }
@@ -13,7 +14,7 @@ struct LocationBaseFields {
 // MARK: -
 extension LocationBaseFields: LocationFields {
 	// MARK: ModelProjection
-	static let projection = Projection<Location.Identified, Self>(
+	public static let projection = Projection<Location.Identified, Self>(
 		Self.init,
 		\.id,
 		\.value.city,
