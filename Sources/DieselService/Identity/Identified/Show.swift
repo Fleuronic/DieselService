@@ -31,7 +31,7 @@ public extension Show {
 }
 
 // MARK: -
-public extension Show.Identified {
+extension Show.Identified {
 	init(fields: ShowBaseFields) {
 		id = fields.id
 		value = .init(name: fields.name)

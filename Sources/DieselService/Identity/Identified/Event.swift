@@ -59,7 +59,7 @@ public extension Event {
 }
 
 // MARK: -
-public extension Event.Identified {
+extension Event.Identified {
 	init(
 		fields: EventBaseFields,
 		show: Show.Identified?,

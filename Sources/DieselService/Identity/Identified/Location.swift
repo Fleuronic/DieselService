@@ -31,7 +31,7 @@ public extension Location {
 }
 
 // MARK: -
-public extension Location.Identified {
+extension Location.Identified {
 	init(fields: LocationBaseFields) {
 		id = fields.id
 		value = .init(

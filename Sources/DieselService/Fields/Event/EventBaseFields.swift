@@ -9,21 +9,21 @@ import struct Catena.IDFields
 import struct Schemata.Projection
 import protocol Identity.Identifiable
 
-public struct EventBaseFields {
-	public let id: Event.ID
-	public let show: IDFields<Show.Identified>?
-	public let slug: String?
-	public let date: Date
-	public let startTime: Date?
-	public let timeZone: String?
-	public let location: IDFields<Location.Identified>
-	public let venue: IDFields<Venue.Identified>?
+struct EventBaseFields {
+	let id: Event.ID
+	let show: IDFields<Show.Identified>?
+	let slug: String?
+	let date: Date
+	let startTime: Date?
+	let timeZone: String?
+	let location: IDFields<Location.Identified>
+	let venue: IDFields<Venue.Identified>?
 }
 
 // MARK: -
 extension EventBaseFields: EventFields {
 	// MARK: ModelProjection
-	public static let projection = Projection<Event.Identified, Self>(
+	static let projection = Projection<Event.Identified, Self>(
 		Self.init,
 		\.id,
 		\.show.id,
