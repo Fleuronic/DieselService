@@ -31,11 +31,9 @@ public extension Division {
 }
 
 // MARK: -
-extension Division.Identified: Identifiable {
-	public typealias RawIdentifier = UUID
-}
-
 extension Division.Identified: Catena.Model {
+	public typealias RawIdentifier = UUID
+
 	// MARK: Model
 	public static let schema = Schema(
 		Self.init..."divisions",

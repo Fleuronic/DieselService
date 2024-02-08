@@ -2,7 +2,6 @@
 
 import struct Diesel.Show
 import struct Schemata.Projection
-import protocol Identity.Identifiable
 
 public struct ShowBaseFields {
 	public let id: Show.ID

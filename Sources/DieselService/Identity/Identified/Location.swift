@@ -42,11 +42,9 @@ extension Location.Identified {
 }
 
 // MARK: -
-extension Location.Identified: Identifiable {
-	public typealias RawIdentifier = UUID
-}
-
 extension Location.Identified: Catena.Model {
+	public typealias RawIdentifier = UUID
+
 	// MARK: Model
 	public static let schema = Schema(
 		Self.init..."locations",

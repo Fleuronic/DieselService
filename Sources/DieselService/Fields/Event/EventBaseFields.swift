@@ -7,7 +7,6 @@ import struct Diesel.Venue
 import struct Foundation.Date
 import struct Catena.IDFields
 import struct Schemata.Projection
-import protocol Identity.Identifiable
 
 public struct EventBaseFields {
 	public let id: Event.ID

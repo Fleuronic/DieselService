@@ -54,11 +54,9 @@ public extension Slot {
 }
 
 // MARK: -
-extension Slot.Identified: Identifiable {
-	public typealias RawIdentifier = UUID
-}
-
 extension Slot.Identified: Catena.Model {
+	public typealias RawIdentifier = UUID
+	
 	// MARK: Model
 	public static let schema = Schema(
 		Self.init..."slots",

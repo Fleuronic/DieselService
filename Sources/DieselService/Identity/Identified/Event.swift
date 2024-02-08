@@ -81,11 +81,9 @@ extension Event.Identified {
 }
 
 // MARK: -
-extension Event.Identified: Identifiable {
-	public typealias RawIdentifier = UUID
-}
-
 extension Event.Identified: Model {
+	public typealias RawIdentifier = UUID
+
 	// MARK: Model
 	public static let schema = Schema(
 		Self.init..."events",

@@ -52,11 +52,9 @@ public extension Corps.Identified {
 }
 
 // MARK: -
-extension Corps.Identified: Identifiable {
-	public typealias RawIdentifier = UUID
-}
-
 extension Corps.Identified: Catena.Model {
+	public typealias RawIdentifier = UUID
+
 	// MARK: Model
 	public static let schema = Schema(
 		Self.init ... "corps",

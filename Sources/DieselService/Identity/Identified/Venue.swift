@@ -51,12 +51,9 @@ extension Venue.Identified {
 	}
 }
 
-// MARK: -
-extension Venue.Identified: Identifiable {
-	public typealias RawIdentifier = UUID
-}
-
 extension Venue.Identified: Model {
+	public typealias RawIdentifier = UUID
+	
 	// MARK: Model
 	public static let schema = Schema(
 		Self.init..."venues",

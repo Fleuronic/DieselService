@@ -33,11 +33,9 @@ public extension Placement {
 }
 
 // MARK: -
-extension Placement.Identified: Identifiable {
-	public typealias RawIdentifier = UUID
-}
-
 extension Placement.Identified: Catena.Model {
+	public typealias RawIdentifier = UUID
+
 	// MARK: Model
 	public static let schema = Schema(
 		Self.init..."placements",

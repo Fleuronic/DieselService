@@ -40,11 +40,9 @@ public extension Performance {
 }
 
 // MARK: -
-extension Performance.Identified: Identifiable {
-	public typealias RawIdentifier = UUID
-}
-
 extension Performance.Identified: Catena.Model {
+	public typealias RawIdentifier = UUID
+
 	// MARK: Model
 	public static let schema = Schema(
 		Self.init..."performances",

@@ -40,11 +40,9 @@ public extension Feature {
 }
 
 // MARK: -
-extension Feature.Identified: Identifiable {
-	public typealias RawIdentifier = UUID
-}
-
 extension Feature.Identified: Catena.Model {
+	public typealias RawIdentifier = UUID
+
 	// MARK: Model
 	public static let schema = Schema(
 		Self.init..."features",

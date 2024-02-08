@@ -39,11 +39,9 @@ extension Show.Identified {
 }
 
 // MARK: -
-extension Show.Identified: Identifiable {
-	public typealias RawIdentifier = UUID
-}
-
 extension Show.Identified: Catena.Model {
+	public typealias RawIdentifier = UUID
+
 	// MARK: Model
 	public static let schema = Schema(
 		Self.init..."shows",

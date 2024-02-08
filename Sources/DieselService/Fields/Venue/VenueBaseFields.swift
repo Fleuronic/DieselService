@@ -4,7 +4,6 @@ import struct Diesel.Address
 import struct Diesel.Venue
 import struct Catena.IDFields
 import struct Schemata.Projection
-import protocol Identity.Identifiable
 
 public struct VenueBaseFields {
 	public let id: Venue.ID

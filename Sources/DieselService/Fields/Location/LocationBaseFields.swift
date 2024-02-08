@@ -2,7 +2,6 @@
 
 import struct Diesel.Location
 import struct Schemata.Projection
-import protocol Identity.Identifiable
 
 public struct LocationBaseFields {
 	public let id: Location.ID
