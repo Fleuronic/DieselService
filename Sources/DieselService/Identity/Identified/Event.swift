@@ -17,7 +17,7 @@ import protocol Catena.Model
 import protocol Identity.Identifiable
 
 public struct IdentifiedEvent {
-	public let id: Self.ID
+	public let id: ID
 	public let value: Event
 	public let show: Show.Identified!
 	public let location: Location.Identified
@@ -82,6 +82,7 @@ extension Event.Identified {
 
 // MARK: -
 extension Event.Identified: Model {
+	// MARK: Identifiable
 	public typealias RawIdentifier = UUID
 
 	// MARK: Model

@@ -3,14 +3,14 @@
 import PersistDB
 import Schemata
 
-import protocol Catena.Model
-import struct Diesel.Address
 import struct Diesel.Venue
+import struct Diesel.Address
 import struct Foundation.UUID
+import protocol Catena.Model
 import protocol Identity.Identifiable
 
 public struct IdentifiedVenue {
-	public let id: Self.ID
+	public let id: ID
 	public let value: Venue
 	public let address: Address.Identified
 }
@@ -52,8 +52,9 @@ extension Venue.Identified {
 }
 
 extension Venue.Identified: Model {
+	// MARK: Identifiable
 	public typealias RawIdentifier = UUID
-	
+
 	// MARK: Model
 	public static let schema = Schema(
 		Self.init..."venues",

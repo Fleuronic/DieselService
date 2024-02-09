@@ -1,15 +1,15 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import PersistDB
 import Schemata
+import PersistDB
 
-import protocol Catena.Model
 import struct Diesel.Division
 import struct Foundation.UUID
+import protocol Catena.Model
 import protocol Identity.Identifiable
 
 public struct IdentifiedDivision {
-	public let id: Self.ID
+	public let id: ID
 	public let value: Division
 }
 
@@ -31,7 +31,8 @@ public extension Division {
 }
 
 // MARK: -
-extension Division.Identified: Catena.Model {
+extension Division.Identified: Model {
+	// MARK: Identifiable
 	public typealias RawIdentifier = UUID
 
 	// MARK: Model

@@ -10,7 +10,7 @@ import protocol Catena.Model
 import protocol Identity.Identifiable
 
 public struct IdentifiedAddress {
-	public let id: Self.ID
+	public let id: ID
 	public let value: Address
 	public let location: Location.Identified
 }
@@ -51,9 +51,10 @@ extension Address.Identified {
 	}
 }
 
-extension Address.Identified: Catena.Model {
+extension Address.Identified: Model {
+	// MARK: Identifiable
 	public typealias RawIdentifier = UUID
-	
+
 	// MARK: Model
 	public static let schema = Schema(
 		Self.init..."addresses",

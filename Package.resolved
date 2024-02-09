@@ -6,7 +6,7 @@
       "location" : "https://github.com/Fleuronic/Catena",
       "state" : {
         "branch" : "main",
-        "revision" : "4ca5c0ad5552f60dde02ae6fbebad2d8662d259b"
+        "revision" : "4f4644276c51b1877e62f4492a53a6af9c4d658a"
       }
     },
     {
@@ -15,7 +15,7 @@
       "location" : "https://github.com/Fleuronic/Catenary",
       "state" : {
         "branch" : "main",
-        "revision" : "8dc67ce7511bfede0ef88585f717fa2ede6cca81"
+        "revision" : "d8494c945de9b8541c32ccdac5bcf12d65e20482"
       }
     },
     {
@@ -24,7 +24,7 @@
       "location" : "https://github.com/Fleuronic/Catenoid",
       "state" : {
         "branch" : "main",
-        "revision" : "acf392cae2cb0cdb517d4912dbed7a7549f2e7d8"
+        "revision" : "053bc7cd09a4c08b0fc4b913d90a295db8fb6b4d"
       }
     },
     {
@@ -42,7 +42,7 @@
       "location" : "https://github.com/Fleuronic/Diesel",
       "state" : {
         "branch" : "main",
-        "revision" : "1b11aae43713b79d870b95960e067a42c6951f27"
+        "revision" : "af4790e1d140096284e9b2c122fa5a7b412550d7"
       }
     },
     {
@@ -69,7 +69,7 @@
       "location" : "https://github.com/LeonardoCardoso/InitMacro.git",
       "state" : {
         "branch" : "main",
-        "revision" : "6b1488c4b540c70e1952dd2ece985dbe266e8964"
+        "revision" : "41beaa5cc3f8884385df6d0acf49f79821ab2496"
       }
     },
     {

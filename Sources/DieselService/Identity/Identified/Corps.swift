@@ -10,7 +10,7 @@ import protocol Catena.Model
 import protocol Identity.Identifiable
 
 public struct IdentifiedCorps {
-	public let id: Self.ID
+	public let id: ID
 	public let value: Corps
 	public let location: Location.Identified
 }
@@ -52,7 +52,8 @@ public extension Corps.Identified {
 }
 
 // MARK: -
-extension Corps.Identified: Catena.Model {
+extension Corps.Identified: Model {
+	// MARK: Identifiable
 	public typealias RawIdentifier = UUID
 
 	// MARK: Model

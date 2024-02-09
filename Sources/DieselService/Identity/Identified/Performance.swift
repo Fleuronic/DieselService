@@ -14,7 +14,7 @@ import protocol Catena.Model
 import protocol Identity.Identifiable
 
 public struct IdentifiedPerformance {
-	public let id: Self.ID
+	public let id: ID
 	public let value: Performance
 	public let corps: Corps.Identified
 	public let placement: Placement.Identified!
@@ -40,7 +40,8 @@ public extension Performance {
 }
 
 // MARK: -
-extension Performance.Identified: Catena.Model {
+extension Performance.Identified: Model {
+	// MARK: Identifiable
 	public typealias RawIdentifier = UUID
 
 	// MARK: Model

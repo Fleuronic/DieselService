@@ -13,7 +13,7 @@ import struct Foundation.UUID
 import protocol Identity.Identifiable
 
 public struct IdentifiedFeature {
-	public let id: Self.ID
+	public let id: ID
 	public let value: Feature
 	public let corps: Corps.Identified!
 }
@@ -40,7 +40,8 @@ public extension Feature {
 }
 
 // MARK: -
-extension Feature.Identified: Catena.Model {
+extension Feature.Identified: Model {
+	// MARK: Identifiable
 	public typealias RawIdentifier = UUID
 
 	// MARK: Model

@@ -3,13 +3,13 @@
 import PersistDB
 import Schemata
 
-import protocol Catena.Model
 import struct Diesel.Location
 import struct Foundation.UUID
+import protocol Catena.Model
 import protocol Identity.Identifiable
 
 public struct IdentifiedLocation {
-	public let id: Self.ID
+	public let id: ID
 	public let value: Location
 }
 
@@ -42,7 +42,8 @@ extension Location.Identified {
 }
 
 // MARK: -
-extension Location.Identified: Catena.Model {
+extension Location.Identified: Model {
+	// MARK: Identifiable
 	public typealias RawIdentifier = UUID
 
 	// MARK: Model

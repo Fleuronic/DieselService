@@ -17,7 +17,7 @@ import protocol Catena.Model
 import protocol Identity.Identifiable
 
 public struct IdentifiedSlot {
-	public let id: Self.ID
+	public let id: ID
 	public let value: Slot
 	public let event: Event.Identified
 	public let feature: Feature.Identified!
@@ -54,9 +54,10 @@ public extension Slot {
 }
 
 // MARK: -
-extension Slot.Identified: Catena.Model {
+extension Slot.Identified: Model {
+	// MARK: Identifiable
 	public typealias RawIdentifier = UUID
-	
+
 	// MARK: Model
 	public static let schema = Schema(
 		Self.init..."slots",
