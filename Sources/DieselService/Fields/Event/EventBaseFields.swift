@@ -10,14 +10,14 @@ import struct Schemata.Projection
 
 public struct EventBaseFields {
 	public let id: Event.ID
+	public let show: IDFields<Show.Identified>?
+	public let location: IDFields<Location.Identified>
+	public let venue: IDFields<Venue.Identified>?
 
-	let show: IDFields<Show.Identified>?
 	let slug: String?
 	let date: Date
 	let startTime: Date?
 	let timeZone: String?
-	let location: IDFields<Location.Identified>
-	let venue: IDFields<Venue.Identified>?
 }
 
 // MARK: -
@@ -27,12 +27,12 @@ extension EventBaseFields: EventFields {
 		Self.init,
 		\.id,
 		\.show.id,
+		\.location.id,
+		\.venue.id,
 		\.value.slug,
 		\.value.date,
 		\.value.startTime,
-		\.value.timeZone,
-		\.location.id,
-		\.venue.id
+		\.value.timeZone
 	)
 }
 
@@ -41,12 +41,12 @@ private extension EventBaseFields {
 	init(
 		id: Event.ID,
 		showID: Show.ID?,
+		locationID: Location.ID,
+		venueID: Venue.ID?,
 		slug: String?,
 		date: Date,
 		startTime: Date?,
-		timeZone: String?,
-		locationID: Location.ID,
-		venueID: Venue.ID?
+		timeZone: String?
 	) {
 		self.id = id
 		self.slug = slug

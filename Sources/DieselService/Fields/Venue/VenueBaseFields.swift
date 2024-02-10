@@ -7,10 +7,10 @@ import struct Schemata.Projection
 
 public struct VenueBaseFields {
 	public let id: Venue.ID
+	public let address: IDFields<Address.Identified>
 
 	let name: String
 	let host: String?
-	let address: IDFields<Address.Identified>
 }
 
 // MARK: -

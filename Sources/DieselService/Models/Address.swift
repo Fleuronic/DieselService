@@ -37,7 +37,7 @@ public extension Address {
 }
 
 // MARK: -
-extension Address.Identified {
+public extension Address.Identified {
 	init(
 		fields: AddressBaseFields,
 		location: Location.Identified

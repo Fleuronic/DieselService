@@ -7,10 +7,10 @@ import struct Schemata.Projection
 
 public struct AddressBaseFields {
 	public let id: Address.ID
+	public let location: IDFields<Location.Identified>
 
 	let streetAddress: String
 	let zipCode: String
-	let location: IDFields<Location.Identified>
 }
 
 // MARK: -
@@ -19,9 +19,9 @@ extension AddressBaseFields: AddressFields {
 	public static let projection = Projection<Address.Identified, Self>(
 		Self.init,
 		\.id,
+		\.location.id,
 		\.value.streetAddress,
-		\.value.zipCode,
-		\.location.id
+		\.value.zipCode
 	)
 }
 
@@ -29,9 +29,9 @@ extension AddressBaseFields: AddressFields {
 private extension AddressBaseFields {
 	init(
 		id: Address.ID,
+		locationID: Location.ID,
 		streetAddress: String,
-		zipCode: String,
-		locationID: Location.ID
+		zipCode: String
 	) {
 		self.id = id
 		self.streetAddress = streetAddress
