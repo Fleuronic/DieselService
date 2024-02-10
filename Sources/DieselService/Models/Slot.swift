@@ -68,20 +68,20 @@ extension Slot.Identified: Model {
 		\.performance -->? "performance"
 	)
 
+	// MARK: Model
+	public static let relationships: Relationships = [
+		\.event.id: \.event,
+		\.feature.id: \.feature!,
+		\.performance.id: \.performance!
+	]
+
+	// MARK: Model
 	public var valueSet: ValueSet<Self> {
 		[
 			\.value.time == value.time,
 			\.event.id == event.id,
 			\.performance.id == performance?.id,
 			\.feature.id == feature?.id
-		]
-	}
-
-	public static var relationships: Relationships {
-		[
-			\.event.id: \.event,
-			\.feature.id: \.feature!,
-			\.performance.id: \.performance!
 		]
 	}
 }

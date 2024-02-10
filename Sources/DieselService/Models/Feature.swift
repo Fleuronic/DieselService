@@ -52,16 +52,16 @@ extension Feature.Identified: Model {
 		\.corps -->? "corps"
 	)
 
+	// MARK: Model
+	public static let relationships: Relationships = [
+		\.corps.id: \.corps!
+	]
+
+	// MARK: Model
 	public var valueSet: ValueSet<Self> {
 		[
 			\.value.name == value.name,
 			\.corps.id == corps?.id
-		]
-	}
-
-	public static var relationships: Relationships {
-		[
-			\.corps.id: \.corps!
 		]
 	}
 }

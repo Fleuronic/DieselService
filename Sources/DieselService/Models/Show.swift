@@ -50,6 +50,7 @@ extension Show.Identified: Model {
 		\.value.name * "name"
 	)
 
+	// MARK: Model
 	public var valueSet: ValueSet<Self> {
 		[\.value.name == value.name]
 	}

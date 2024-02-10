@@ -45,17 +45,19 @@ extension Placement.Identified: Model {
 		\.value.score * "score",
 		\.division --> "division"
 	)
+	
+	// MARK: Model
+	public static let relationships: Relationships = [
+		\.division.id: \.division
+	]
 
+	// MARK: Model
 	public var valueSet: ValueSet<Self> {
 		[
 			\.value.rank == value.rank,
 			\.value.score == value.score,
 			\.division.id == division.id
 		]
-	}
-
-	public static var relationships: Relationships {
-		[\.division.id: \.division]
 	}
 }
 

@@ -54,6 +54,7 @@ extension Location.Identified: Model {
 		\.value.state * "state"
 	)
 
+	// MARK: Model
 	public var valueSet: ValueSet<Self> {
 		[
 			\.value.city == value.city,

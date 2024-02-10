@@ -64,17 +64,17 @@ extension Venue.Identified: Model {
 		\.address --> "address"
 	)
 
+	// MARK: Model
+	public static let relationships: Relationships = [
+		\.address.id: \.address
+	]
+
+	// MARK: Model
 	public var valueSet: ValueSet<Self> {
 		[
 			\.value.name == value.name,
 			\.value.host == value.host,
 			\.address.id == address.id
-		]
-	}
-
-	public static var relationships: Relationships {
-		[
-			\.address.id: \.address
 		]
 	}
 }

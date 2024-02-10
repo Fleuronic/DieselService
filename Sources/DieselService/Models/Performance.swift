@@ -52,17 +52,17 @@ extension Performance.Identified: Model {
 		\.placement -->? "placement"
 	)
 
+	// MARK: Model
+	public static let relationships: Relationships = [
+		\.corps.id: \.corps,
+		\.placement.id: \.placement!
+	]
+
+	// MARK: Model
 	public var valueSet: ValueSet<Self> {
 		[
 			\.corps.id == corps.id,
 			\.placement.id == placement?.id
-		]
-	}
-
-	public static var relationships: Relationships {
-		[
-			\.corps.id: \.corps,
-			\.placement.id: \.placement!
 		]
 	}
 }

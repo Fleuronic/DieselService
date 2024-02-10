@@ -63,17 +63,19 @@ extension Address.Identified: Model {
 		\.value.zipCode * "zip_code",
 		\.location --> "location"
 	)
+	
+	// MARK: Model
+	public static let relationships: Relationships = [
+		\.location.id: \.location
+	]
 
+	// MARK: Model
 	public var valueSet: ValueSet<Self> {
 		[
 			\.value.streetAddress == value.streetAddress,
 			\.value.zipCode == value.zipCode,
 			\.location.id == location.id
 		]
-	}
-
-	public static var relationships: Relationships {
-		[\.location.id: \.location]
 	}
 }
 

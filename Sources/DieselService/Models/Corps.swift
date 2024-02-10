@@ -64,16 +64,16 @@ extension Corps.Identified: Model {
 		\.location --> "location"
 	)
 
+	// MARK: Model
+	public static let relationships: Relationships = [
+		\.location.id: \.location,
+	]
+
+	// MARK: Model
 	public var valueSet: ValueSet<Self> {
 		[
 			\.value.name == value.name,
 			\.location.id == location.id,
-		]
-	}
-
-	public static var relationships: Relationships {
-		[
-			\.location.id: \.location,
 		]
 	}
 }

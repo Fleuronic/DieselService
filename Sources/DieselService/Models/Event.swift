@@ -98,7 +98,19 @@ extension Event.Identified: Model {
 		\.venue -->? "venue",
 		\.slots -->> \.event
 	)
+	
+	// MARK: Model
+	public static let relationships: Relationships = [
+		\.show.id: \.show!,
+		\.location.id: \.location,
+		\.venue.id: \.venue!
+	]
+	
+	public static let defaultOrder: [Ordering<Self>] = [
+		.init(\.value.date, ascending: true)
+	]
 
+	// MARK: Model
 	public var valueSet: ValueSet<Self> {
 		[
 			\.value.slug == value.slug,
@@ -109,18 +121,6 @@ extension Event.Identified: Model {
 			\.location.id == location.id,
 			\.venue.id == venue?.id
 		]
-	}
-
-	public static var relationships: Relationships {
-		[
-			\.show.id: \.show!,
-			\.location.id: \.location,
-			\.venue.id: \.venue!
-		]
-	}
-
-	public static var defaultOrder: [Ordering<Self>] {
-		[.init(\.value.date, ascending: true)]
 	}
 }
 
